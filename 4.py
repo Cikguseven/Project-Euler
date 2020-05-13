@@ -4,12 +4,16 @@ The largest palindrome made from the product of two 2-digit numbers is 9009 = 91
 
 Find the largest palindrome made from the product of two 3-digit numbers.
 '''
+
 products = []
 l = []
+
 for i in range(100,1000):
 	for k in range(100,1000):
 		products.append(i * k)
+		
 for j in products:
 	if str(j)[::-1] == str(j):
 		l.append(j)
+
 print(max(l))

@@ -1,9 +1,15 @@
+'''
+The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
+
+Find the sum of all the primes below two million.
+'''
+
 import math
 
-x = [2, 3, 5, 7, 11, 13, 17]
-i = 19
+i = 11
 j = 2
-csum = 17 + 11 + 13 + 17
+csum = 17 
+
 while i < 2000000:
 		if i%j == 0 and int(math.sqrt(i)) >= j:
 			i += 2
@@ -12,7 +18,6 @@ while i < 2000000:
 			j += 1
 		else:
 			csum += i
-			x.append(i)
 			i += 2
 			j = 2
 			
