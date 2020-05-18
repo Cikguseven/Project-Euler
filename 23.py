@@ -27,7 +27,7 @@ def d(n):
 for n in range(1, limit):
 	if d(n) > n:
 		abn.add(n)
-	if not any((n-a in abn) for a in abn ):
+	if not any((n-a in abn) for a in abn):
 		x += n
 
 print(x) # Sum of triangular numbers from 1 to 20161: 203243041. x must be lower than this theoretical limit.

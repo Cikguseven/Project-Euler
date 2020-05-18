@@ -24,8 +24,7 @@ What is the index of the first term in the Fibonacci sequence to contain 1000 di
 '''
 
 import time
-
-start = time.time() # Time at start of execution
+start = time.time() 
 
 a = 1
 b = 1
@@ -45,6 +44,5 @@ while True: # Generate Fibonacci numbers and stops if number reaches length of 1
 
 print(n) # Prints index of first term with 1000 digits
 
-end = time.time() # Time at end of execution
-
-print(end - start) # Total execution time in seconds
+end = time.time()
+print(end - start)
