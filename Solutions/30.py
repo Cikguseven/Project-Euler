@@ -12,20 +12,23 @@ The sum of these numbers is 1634 + 8208 + 9474 = 19316.
 Find the sum of all the numbers that can be written as the sum of fifth powers of their digits.
 '''
 
-valid = []
+import time
 
-for i in range(64, 354295): 
+start = time.time()
+
+valid = []
+z = 0
+
+for i in range(10, 354294): 
 	x = str(i)
 	y = 0
 	for a in x:
 		y += int(a) ** 5
 	if y == i:
-		valid.append(i)
-
-z = 0
-
-for i in valid:
-	z += int(i)
+		z += i
 
 print(z)
 		
+end = time.time()
+
+print(end - start)

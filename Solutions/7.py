@@ -10,21 +10,26 @@ start = time.time()
 
 import math
 
-x = [2, 3, 5, 7, 11]
-i = 13
-j = 2
-while len(x) < 10002: # Checks if odds numbers from 13 (i) are prime and appends prime numbers to list x until 10 001 prime numbers are obtained
-	if i%j == 0 and int(math.sqrt(i)) >= j: # If numbers less than its square root are proper divisors of i, it is not prime and proceeds to next odd number
-		i += 2
-		j = 2
-	elif int(math.sqrt(i)) >= j: # Test the next divisor if it is still smaller than the square root of i
-		j += 1
-	else: # Number is prime and appended to list x
-		x.append(i)
-		i += 2
-		j = 2
+primes = [2, 3, 5, 7, 11]
+n = 13
+d = 2
+
+# Generate primes from odd numbers starting from 13 (n) and appends prime numbers to list, primes, until 10 001 prime numbers are obtained
+while len(primes) < 10002: 
+	# If numbers less than its square root are proper divisors of n, it is not prime and proceeds to next odd number
+	if n % d == 0 and int(math.sqrt(n)) >= d: 
+		n += 2
+		d = 2
+	# Test the next divisor if it is still smaller than the square root of n
+	elif int(math.sqrt(n)) >= d: 
+		d += 1
+	# Number is prime and appended to list primes
+	else: 
+		primes.append(n)
+		n += 2
+		d = 2
 			
-print(x[10000]) # Displays the 10 001st prime number
+print(primes[10000]) # Displays the 10 001st prime number
 
 end = time.time()
 
