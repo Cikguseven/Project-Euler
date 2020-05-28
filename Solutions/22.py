@@ -5,6 +5,11 @@ For example, when the list is sorted into alphabetical order, COLIN, which is wo
 
 What is the total of all the name scores in the file?
 '''
+
+import time
+
+start = time.time()
+
 import os
 
 cur_path = os.path.dirname(__file__)
@@ -15,7 +20,7 @@ nameFile = open(new_path, 'r')
 
 nameList = sorted(nameFile.read().replace('"','').split(','),key=str)
 
-letterToNumDict = {"A":1,"B":2,"C":3,"D":4,"E":5,"F":6,"G":7,"H":8,"I":9,"J":10,"K":11,"L":12,"M":13,"N":14,"O":15,"P":16,"Q":17,"R":18,"S":19,"T":20,"U":21,"V":22,"W":23,"X":24,"Y":25,"Z":26}
+letterToNumDict = {"A": 1, "B": 2, "C": 3, "D": 4, "E": 5, "F": 6, "G": 7, "H": 8, "I": 9, "J": 10, "K": 11, "L": 12, "M": 13, "N": 14, "O": 15, "P": 16, "Q": 17, "R": 18, "S": 19, "T": 20, "U": 21, "V": 22 , "W": 23, "X": 24, "Y": 25, "Z": 26}
 
 def letterToNum(nstring): # Converts letters in name to equivalent numerical value
 	x = 0
@@ -31,4 +36,8 @@ for name in nameList: # Sums product of numerical value of name and rank in alph
 print(total)
 
 nameFile.close()
+
+end = time.time()
+
+print(end - start) # Executed in 0.247 seconds
 

@@ -8,6 +8,10 @@ By converting each letter in a word to a number corresponding to its alphabetica
 Using words.txt (right click and 'Save Link/Target As...'), a 16K text file containing nearly two-thousand common English words, how many are triangle words?
 '''
 
+import time
+
+start = time.time()
+
 import os
 
 cur_path = os.path.dirname(__file__)
@@ -18,6 +22,31 @@ wordFile = open(new_path, 'r')
 
 wordList = sorted(wordFile.read().replace('"','').split(','),key=str)
 
-print(wordList)
+letterToNumDict = {"A": 1, "B": 2, "C": 3, "D": 4, "E": 5, "F": 6, "G": 7, "H": 8, "I": 9, "J": 10, "K": 11, "L": 12, "M": 13, "N": 14, "O": 15, "P": 16, "Q": 17, "R": 18, "S": 19, "T": 20, "U": 21, "V": 22 , "W": 23, "X": 24, "Y": 25, "Z": 26}
 
-letterToNumDict = {"A":1,"B":2,"C":3,"D":4,"E":5,"F":6,"G":7,"H":8,"I":9,"J":10,"K":11,"L":12,"M":13,"N":14,"O":15,"P":16,"Q":17,"R":18,"S":19,"T":20,"U":21,"V":22,"W":23,"X":24,"Y":25,"Z":26}
+counter = 0
+
+def letterToNum(word): # Converts letters in word to equivalent numerical value
+	global counter
+	x = 0
+	for character in word:
+		x += letterToNumDict[character]
+	if x in triangleNumbers:
+		counter += 1
+
+triangleNumbers = []
+
+for i in range(1, 21): # Largest word value in file is 192 
+	triangleNumbers.append(int((i ** 2 + i) / 2))
+
+for word in wordList:
+	letterToNum(word)
+
+print(counter)
+
+wordFile.close()
+
+end = time.time()
+
+print(end - start) # Executed in 0.00400 seconds
+
