@@ -18,7 +18,7 @@ for n in range(1, 2168):
 	pentagonalNumbers.append(int((n * (3 * n - 1)) / 2))
 
 def pentagonal(n):
-    if (1 + (24 * n + 1) ** 0.5) % 6 == 0:
+    if (((24 * n + 1) ** 0.5) + 1) % 6 == 0:
         return True
     return False
 
