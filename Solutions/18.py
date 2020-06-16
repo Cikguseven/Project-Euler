@@ -76,8 +76,3 @@ print(max(nested_list[14]))
 end = time.time()
 
 print(end - start) # Executed in 0.0 seconds
-
-
-
-
-

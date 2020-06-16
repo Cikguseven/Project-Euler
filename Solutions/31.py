@@ -14,7 +14,7 @@ import time
 
 start = time.time()
 
-count = 0
+solution = 0
 
 # Breaks down problem by calculating number of ways change can be given in smaller denominations. Does not consider 1p coins as they will be automatically added to fill up every way.
 for a in range(3): # Possible number of £1 coins
@@ -23,12 +23,10 @@ for a in range(3): # Possible number of £1 coins
 			for d in range(1 + int((200 - 100 * a - 50 * b - 20 * c) / 10)): # Possible number of 10p coins
 				for e in range(1 + int((200 - 100 * a - 50 * b - 20 * c - 10 * d) / 5)): # Possible number of 50p coins
 					for f in range(1 + int((200 - 100 * a - 50 * b - 20 * c - 10 * d - 5 * e) / 2)): # Possible number of 2p coins
-						count += 1
+						solution += 1
 									
-print(count + 1) # Total no. of ways + 1 way with 1 x £2 coin
+print(solution + 1) # Total no. of ways + 1 way with 1 x £2 coin
 
 end = time.time()
 
-print(end - start) # Executed in 0.0110 seconds				
-
-						
+print(end - start) # Executed in 0.0110 seconds

@@ -29,7 +29,6 @@ n = 32 # Only n = 32 and larger produces triangle numbers larger than 500
 while True:
 	prime_factors = {}
 	triangle_number = n * (n + 1) / 2
-	n += 1
 	i = 2
 	while i <= triangle_number: # Finding number of prime factors for a triangle number
 		if triangle_number % i == 0:
@@ -45,7 +44,8 @@ while True:
 	if divisors > 500:
 		print(int(((n - 1) * (n)) / 2))
 		break
+	n += 1
 
 end = time.time()
 
-print(end - start) # Executed in 8.95 seconds
+print(end - start) # Executed in 8.36 seconds

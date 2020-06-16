@@ -16,17 +16,16 @@ import time
 
 start = time.time()
 
-sum_of_valid_numbers = 0
+solution = 0
 
 for n in range(10, 354294): 
-	string_of_number = str(n)
-	sum_of_digits = 0
-	for digits in string_of_number:
-		sum_of_digits += int(digits) ** 5
-	if sum_of_digits == n:
-		sum_of_valid_numbers += n
+	digit_sum = 0
+	for digits in str(n):
+		digit_sum += int(digits) ** 5
+	if digit_sum == n:
+		solution += n
 
-print(sum_of_valid_numbers)
+print(solution)
 		
 end = time.time()
 

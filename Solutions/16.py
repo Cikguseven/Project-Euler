@@ -8,13 +8,12 @@ import time
 
 start = time.time()
 
-value = 2 ** 1000
-sum = 0
+solution = 0
 
-for i in str(value):
-	sum += int(i)
+for i in str(2 ** 1000):
+	solution += int(i)
 
-print(sum)
+print(solution)
 
 end = time.time()
 

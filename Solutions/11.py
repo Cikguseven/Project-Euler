@@ -37,44 +37,40 @@ grid = [['08', '02', '22', '97', '38', '15', '00', '40', '00', '75', '04', '05',
 largest_product = 0
 
 # Compare columns, x-coordinates = 0
-# Largest product = 51267216
 for i in range(20):
 	for j in range(17):
-		current_product = 1
+		product = 1
 		for k in range(4):
-			current_product *= int(grid[j + k][i])
-		if current_product > largest_product:
-			largest_product = current_product
+			product *= int(grid[j + k][i])
+		if product > largest_product:
+			largest_product = product
 
 # Compare rows, y-coordinates = 0
-# Largest product = 48477312
 for i in range(20):
 	for j in range(17):
-		current_product = 1
+		product = 1
 		for k in range(4):
-			current_product *= int(grid[i][j + k])
-		if current_product > largest_product:
-			largest_product = current_product
+			product *= int(grid[i][j + k])
+		if product > largest_product:
+			largest_product = product
 
 # Compare 'back-slash' diagonals
-# Largest product = 40304286
 for i in range(17):
 	for j in range(17):
-		current_product = 1
+		product = 1
 		for k in range(4):
-			current_product *= int(grid[i + k][j + k])
-		if current_product > largest_product:
-			largest_product = current_product
+			product *= int(grid[i + k][j + k])
+		if product > largest_product:
+			largest_product = product
 
 # Compare 'forward-slash' diagonals
-# Largest product = 70600674
 for i in range(17):
 	for j in range(17):
-		current_product = 1
+		product = 1
 		for k in range(4):
-			current_product *= int(grid[i + k][j - k + 3])
-		if current_product > largest_product:
-			largest_product = current_product
+			product *= int(grid[i + k][j - k + 3])
+		if product > largest_product:
+			largest_product = product
 
 print(largest_product)
 

@@ -13,27 +13,25 @@ start = time.time()
 
 from math import sqrt
 
-amicable_numbers = []
+solution = []
 
 # Function to obtain sum of divisors of number, n
 def d(n):
-	sum_of_proper_divisors = 1 # 1 is a proper divisor of every positive number
+	sum_of_divisors = 1 # 1 is a proper divisor of every positive number
 	for d in range(2, int(sqrt(n)) + 1): # Divisors of numbers come in pairs and we only have to check for divisors less than or equal to its square root to find one of the pairs
 		if n % d == 0:
-			sum_of_proper_divisors += d  
+			sum_of_divisors += d  
 			if n / d != d: # Counts square root of n only once
-				sum_of_proper_divisors += n / d
+				sum_of_divisors += n / d
 				continue
-	return sum_of_proper_divisors
+	return sum_of_divisors
 
 for i in range(2, 10000):
 	if d(d(i)) == i and d(i) != i:
-		amicable_numbers.append(i)
+		solution.append(i)
 	
-print(sum(amicable_numbers))
+print(sum(solution))
 
 end = time.time()
 
 print(end - start) # Executed in 0.125 seconds
-
-

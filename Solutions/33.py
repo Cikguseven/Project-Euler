@@ -27,24 +27,18 @@ for n in range(10, 100): # Iterating numerators, n
 		for a in str(n): # Iterates through digits in numerator
 			for b in str(d): # Iterates through digits in denominator
 				if int(a) == int(b) and int(a) != 0: # Eliminates trivial examples where trailing zeros are cancelled
-					newN = str(n).replace(a, '', 1) # Creates new numerator by eliminating common digit
-					newD = str(d).replace(b, '', 1) # Creates new denominator by eliminating common digit
-					if int(newD) != 0 and int(newN) / int(newD) == f: # Prevents division by 0 and checks if new fraction after cancelling is equal to old fraction
+					new_n = str(n).replace(a, '', 1) # Creates new numerator by eliminating common digit
+					new_d = str(d).replace(b, '', 1) # Creates new denominator by eliminating common digit
+					if int(new_d) != 0 and int(new_n) / int(new_d) == f: # Prevents division by 0 and checks if new fraction after cancelling is equal to old fraction
 						numerators.append(n) 
 						denominators.append(d)
 					break
 
 
-simplified_fraction = Fraction(prod(numerators), prod(denominators)) # Simplest form of fraction of products of all valid numerators divided by products of all valid denominator
+solution = Fraction(prod(numerators), prod(denominators)) # Simplest form of fraction of products of all valid numerators divided by products of all valid denominator
 
-print(simplified_fraction.denominator) 
+print(solution) 
 
 end = time.time()
 
 print(end - start) # Executed in 0.0312 seconds
-
-								
-
-
-
-

@@ -106,7 +106,6 @@ import time
 
 start = time.time()
 
-# Use of RegEx to add addition sign to end of each number
 print(str(
 37107287533902102798797998220837590246510135740250 +
 46376937677490009712648124896970078050417018260538 +
@@ -211,4 +210,4 @@ print(str(
 
 end = time.time()
 
-print(end - start) # Executed in seconds
+print(end - start) # Executed in 0.0 seconds

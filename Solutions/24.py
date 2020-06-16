@@ -15,12 +15,11 @@ from itertools import permutations
 # List of all permutations in order with digits 0-9
 all_permutations = list(permutations('0123456789'))
 
-# Get millionth permutation and join digits in tuple together
-result = ''.join(all_permutations[999999])
+# Obtain millionth permutation and join digits in tuple
+solution = ''.join(all_permutations[999999])
 
-print(result)
+print(solution)
 
 end = time.time()
 
 print(end - start) # Executed in 0.697 seconds
-

@@ -13,20 +13,16 @@ start = time.time()
 
 from math import factorial as fac
 
-factorial_of_100 = fac(100)
+n = fac(100)
 
-sum_of_digits = 0
+solution = 0
 
-while factorial_of_100: # Sums digits in number by diving by 10 and adding to existing sum
-	sum_of_digits += factorial_of_100 % 10
-	factorial_of_100 //= 10
+while n: # Sums digits in number by diving by 10 and adding to existing sum
+	solution += n % 10
+	n //= 10
 
-print(sum_of_digits)
+print(solution)
 
 end = time.time()
 
 print(end - start) # Executed in 0.0 seconds
-
-
-
-

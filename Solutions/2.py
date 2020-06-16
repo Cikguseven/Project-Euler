@@ -14,19 +14,19 @@ a = 1
 
 b = 2
 
-c = [2]
+solution = [2]
 
 while a + b < 4000000:
 	a = a + b
 	if a % 2 == 0:
-		c.append(a)
+		solution.append(a)
 	b = a + b
 	if b > 4000000:
 		break
 	if b % 2 == 0:
-		c.append(b)
+		solution.append(b)
 
-print(sum(c))
+print(sum(solution))
 
 end = time.time()
 

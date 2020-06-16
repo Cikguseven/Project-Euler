@@ -20,20 +20,22 @@ name_file = open(new_path, 'r')
 
 name_list = sorted(name_file.read().replace('"','').split(','),key=str)
 
-letter_to_number_dic = {"A": 1, "B": 2, "C": 3, "D": 4, "E": 5, "F": 6, "G": 7, "H": 8, "I": 9, "J": 10, "K": 11, "L": 12, "M": 13, "N": 14, "O": 15, "P": 16, "Q": 17, "R": 18, "S": 19, "T": 20, "U": 21, "V": 22 , "W": 23, "X": 24, "Y": 25, "Z": 26}
+letter_to_number_dict = {"A": 1, "B": 2, "C": 3, "D": 4, "E": 5, "F": 6, "G": 7, "H": 8, "I": 9, "J": 10, "K": 11, "L": 12, "M": 13, "N": 14, "O": 15, "P": 16, "Q": 17, "R": 18, "S": 19, "T": 20, "U": 21, "V": 22 , "W": 23, "X": 24, "Y": 25, "Z": 26}
 
-def letter_to_number(name): # Converts letters in name to equivalent numerical value
+# Converts letters in name to equivalent numerical value
+def letter_to_number(name): 
 	name_sum = 0
-	for i in name:
-		name_sum += letter_to_number_dic[i]
+	for letter in name:
+		name_sum += letter_to_number_dict[letter]
 	return name_sum
 
-total_score = 0
+solution = 0
 
-for names in name_list: # Sums product of numerical value of name and rank in alphabetical order
-	total_score += letter_to_number(names) * (name_list.index(names) + 1)
+# Sums product of numerical value of name and rank in alphabetical order
+for names in name_list: 
+	solution += letter_to_number(names) * (name_list.index(names) + 1)
 	
-print(total_score)
+print(solution)
 
 name_file.close()
 

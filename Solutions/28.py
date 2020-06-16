@@ -16,17 +16,17 @@ import time
 
 start = time.time()
 
-current_number = 1
+n = 1
 
-sum = 1
+solution = 1
 
 # Add numbers that lie on 2 by 2 spiral till 1001 by 1001 spiral.
 for i in range(2, 1002, 2): # The 4 numbers in the same n by n spiral have the same difference
 	for numbers in range(4):
-		current_number += i
-		sum += current_number
+		n += i
+		solution += n
 
-print(sum)
+print(solution)
 
 end = time.time()
 

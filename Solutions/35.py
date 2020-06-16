@@ -16,7 +16,7 @@ from itertools import product
 
 valid_primes = []
 
-circular_primes = []
+solution = []
 
 def prime_checker(n): 
 	for d in range(3, int(sqrt(n)), 2):
@@ -32,20 +32,18 @@ for length in range(3, 7):
 
 # Rotates primes formed with valid digits by shifting the first digit to the last position and check if new numbers formed are primes
 for prime in valid_primes: 
-	unique_rotations = set()
+	rotations = set()
 	clone = prime
 	length = len(str(prime))
 	for i in range(length - 1):
 		clone = int(str(clone)[1:length] + str(clone)[0])
-		unique_rotations.add(clone)
-	for rotated_primes in unique_rotations:
-		if rotated_primes not in valid_primes:
+		rotations.add(clone)
+	for rotated_numbers in rotations:
+		if rotated_numbers not in valid_primes:
 			break
-	else:
-		circular_primes.append(prime)
+		solution.append(prime)
 
-
-print(len(circular_primes) + 13) # Includes 13 circular primes below 100 as programme only checks primes above 100
+print(len(solution) + 13) # Includes 13 circular primes below 100 as programme only checks primes above 100
 
 end = time.time()
 

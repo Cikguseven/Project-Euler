@@ -6,4 +6,4 @@ How many such routes are there through a 20×20 grid?
 
 Using Combinatorics,
 In order to reach bottom right corner of a 20x20 grid, we need to move right and down 20 times each, regardless of order.
-Therefore, number of distinct routes = 40!/20! x 20! = 137846528820
+Therefore, number of distinct routes = 40! / (20! x 20!) = 137846528820

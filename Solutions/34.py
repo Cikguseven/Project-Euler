@@ -14,15 +14,15 @@ from math import factorial as fac
 
 from itertools import combinations_with_replacement
 
-valid_numbers = []
+solution = []
 
 for length in range(2, 8): # Numbers have to be between 10 and 1499999
-	for string_of_digits in combinations_with_replacement('0123456789', length): # Addition of factorial of digits is commutative and testin can be restricted to unique combinations of digits
-		sum_of_digits_factorial = sum([fac(int(digit)) for digit in string_of_digits])
-		if sorted(str(sum_of_digits_factorial)) == sorted(string_of_digits):
-			valid_numbers.append(sum_of_digits_factorial)
+	for digit_string in combinations_with_replacement('0123456789', length): # Addition of factorial of digits is commutative and testing can be restricted to unique combinations of digits
+		digit_factorial_sum = sum([fac(int(digit)) for digit in digit_string])
+		if sorted(str(digit_factorial_sum)) == sorted(digit_string):
+			solution.append(digit_factorial_sum)
 		
-print(sum(valid_numbers))
+print(sum(solution))
 
 end = time.time()
 

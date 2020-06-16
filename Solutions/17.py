@@ -14,13 +14,13 @@ import inflect
 
 p = inflect.engine()
 
-number_of_letters = 0
+letter_counter = 0
 
 for i in range(1, 1001):
-	number_of_letters += len(p.number_to_words(i).replace("-", "").replace(" ", "")) # Remove spaces and hyphens in words
+	letter_counter += len(p.number_to_words(i).replace("-", "").replace(" ", "")) # Remove spaces and hyphens in words
 
-print(number_of_letters)
+print(letter_counter)
 
 end = time.time()
 
-print(end - start) # Executed in 0.838 seconds
+print(end - start) # Executed in 0.725 seconds

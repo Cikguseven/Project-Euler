@@ -16,7 +16,7 @@ from math import sqrt
 
 limit = 20162 # From Wikipedia: Upper limit is 20161 and not 28123
 
-sum = 0
+solution = 0
 
 abundant_numbers = set()
 
@@ -35,9 +35,9 @@ for i in range(1, limit):
 	if d(i) > i: # Checks if number, i, is abundant
 		abundant_numbers.add(i)
 	if not any((i - a in abundant_numbers) for a in abundant_numbers):
-		sum += i
+		solution += i
 
-print(sum) # Sum of triangular numbers from 1 to 20161: 203243041. x must be smaller than this limit.
+print(solution) # Sum of triangular numbers from 1 to 20161: 203243041. x must be smaller than this limit.
 
 end = time.time()
 

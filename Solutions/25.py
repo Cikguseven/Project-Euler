@@ -31,21 +31,21 @@ a = 1
 
 b = 1
 
-index = 2
+solution = 2
 
 x = 10 ** 999 # Smallest 1000 digit number
 
 while True: # Generate Fibonacci numbers and stops if number reaches length of 1000
     a = a + b
-    index += 1
-    if a >= x:
+    solution += 1
+    if a > x:
         break
     b = a + b
-    index += 1
-    if b >= x:
+    solution += 1
+    if b > x:
         break
 
-print(index) # Prints index of first term with 1000 digits
+print(solution) # Prints index of first term with 1000 digits
 
 end = time.time()
 

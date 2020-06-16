@@ -28,4 +28,4 @@ print(len(terms))
 
 end = time.time()
 
-print(end - start) # Executed in 0.0110 seconds
+print(end - start) # Executed in 0.0100 seconds

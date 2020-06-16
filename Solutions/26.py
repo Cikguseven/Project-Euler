@@ -22,12 +22,12 @@ start = time.time()
 
 longest = 0 # Length of current longest recurring decimal
 
-d = 0 # Number with current longest recurring decimal
+solution = 0 
 
 # Function that performs long division to obtain length of recurring decimals where a is dividend, b is divisor and i is counter for length of recurring decimal
-def recursive_long_division(a, b):
+def long_division(a, b):
 	global longest
-	global d
+	global solution
 	i = 0
 	remainders = [] # List where remainders at every step of long division is appended to
 	while True:
@@ -36,7 +36,7 @@ def recursive_long_division(a, b):
 		elif a in remainders: # Terminates function if remainder repeats and returns length of recurring decimal
 			if (len(remainders) - remainders.index(a)) > longest:
 				longest = (len(remainders) - remainders.index(a))
-				d = b
+				solution = b
 			return
 		elif a // b == 0: # 'Shifts' a decimal place if dividend is too small to obtain quotient
 			if i >= 1:
@@ -48,10 +48,10 @@ def recursive_long_division(a, b):
 			a = a % b
 			i = 0
 
-for j in range(3, 1000, 2): # Skip even numbers as they are observed to have very short or no recurring decimals
-	recursive_long_division(1, j)
+for j in range(3, 1000, 2): # Skips even numbers as they are observed to have very short or no recurring decimals
+	long_division(1, j)
 		
-print(d)
+print(solution)
 
 end = time.time()
 

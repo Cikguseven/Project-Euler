@@ -20,16 +20,16 @@ start = time.time()
 # Use of datetime module to check if dates are Sunday
 from datetime import date
 
-sum = 0
+solution = 0
 
 # Function to check if first day is a Sunday
 for year in range(1901, 2001): # Years in 20th century: 1901 - 2000
     for month in range(1, 13): # January to December
         day = date(year, month, 1)
         if day.weekday() == 6: # Value of Sunday is 6
-        	sum += 1
+        	solution += 1
 
-print(sum)
+print(solution)
 
 end = time.time()
 

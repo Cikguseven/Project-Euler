@@ -20,18 +20,18 @@ start = time.time()
 
 from operator import itemgetter
 
-dic = {n: 0 for n in range(1,1000000)}
+dict = {n: 0 for n in range(1, 1000000)}
 
-dic[1] = 1
+dict[1] = 1
 
-dic[2] = 2
+dict[2] = 2
 
 for n in range(3, 1000000):
 	counter = 0
 	original_number = n
 	while n > 1:
 		if n < original_number:
-			dic[original_number] = dic[n] + counter
+			dict[original_number] = dict[n] + counter
 			break
 		if n % 2 == 0:
 			n /= 2
@@ -40,10 +40,8 @@ for n in range(3, 1000000):
 			n = 3 * n + 1
 			counter += 1
 
-print(max(dic.items(), key = itemgetter(1))[0])
+print(max(dict.items(), key = itemgetter(1))[0])
 
 end = time.time()
 
-print(end - start) # Executed in 3.95 secondsssd
-
-
+print(end - start) # Executed in 3.39 seconds
