@@ -18,14 +18,14 @@ decimal = '' # String representing decimal fraction
 
 product = 1 
 
-for i in range(185186):
-	decimal += str(i)
+for n in range(185186): # Minimum number of iterations to obtain decimal fraction with a million digits
+	decimal += str(n)
 
-for i in range(7):
-	product *= int(decimal[10 ** i])
+for exponent in range(7):
+	product *= int(decimal[10 ** exponent])
 
 print(product)
 
 end = time.time()
 
-print(end - start) # Executed in 0.140 seconds
+print(end - start) # Executed in 0.141 seconds

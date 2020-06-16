@@ -16,16 +16,18 @@ import time
 
 start = time.time()
 
-currentNumber = 1
-totalSum = 1
+current_number = 1
 
-for increment in range(2, 1002, 2): # Numbers in the same n x n spiral have the same difference
-	for j in range(4): # 4 numbers in every n x n grid lie on the diagonal
-		currentNumber += increment
-		totalSum += currentNumber
+sum = 1
 
-print(totalSum)
+# Add numbers that lie on 2 by 2 spiral till 1001 by 1001 spiral.
+for i in range(2, 1002, 2): # The 4 numbers in the same n by n spiral have the same difference
+	for numbers in range(4):
+		current_number += i
+		sum += current_number
+
+print(sum)
 
 end = time.time()
 
-print(end - start)
+print(end - start) # Executed in 0.0 seconds

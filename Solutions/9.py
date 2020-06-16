@@ -8,8 +8,20 @@ There exists exactly one Pythagorean triplet for which a + b + c = 1000.
 Find the product abc.
 '''
 
-for a in range(999):
-	for b in range(999):
-		for c in range(999):
-			if a < b < c and a + b + c == 1000 and a ** 2 + b** 2 == c **2:
-				print(a * b * c)
+import time
+
+start = time.time()
+
+# Generate Pythagorean triplets using m, n quadratic method
+for m in range(1, 32):
+	for n in range(1, m):
+		a = m ** 2 - n ** 2
+		b = 2 * m * n
+		c = m ** 2 + n ** 2
+		if a + b + c == 1000:
+			print(a * b * c)
+			break
+
+end = time.time()
+
+print(end - start) # Executed in 0.0 seconds

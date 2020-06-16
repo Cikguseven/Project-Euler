@@ -16,53 +16,54 @@ start = time.time()
 
 from math import sqrt
 
-validPrimes = [3797] # List of primes that are truncatable both ways
-
-def primeChecker(x):
-	for d in range(2, int(sqrt(x)) + 1):
-		if x % d == 0 and x != d:
-			return False
-	return True
-
-def leftToRight(x):
-	for i in range(len(str(x)) - 2):
-		x = int(str(x)[1:])
-		if primeChecker(x) == False:
-			return False
-	return True
-
-def rightToLeft(x):
-	for i in range(len(str(x)) - 2):
-		x = int(str(x)[:len(str(x)) - 1])
-		if primeChecker(x) == False:
-			return False
-	return True
-
 from itertools import product
 
-allFillers = []
-stringOfFillers = ['', '1', '3', '7', '9'] # Non-terminal numbers
-firstDigits = ['2', '3', '5', '7'] # Truncatable primes must start with these digits
-lastDigits = ['3', '7'] # Truncatable primes must end with these digits
+def prime_checker(x):
+	for d in range(3, int(sqrt(x)) + 1, 2):
+		if x % d == 0:
+			return False
+	return True
 
-for i in range(2, 5):
-	allFillers += list((product('1379', repeat = i)))
+# Continuously removes first digit of primes and check if they are prime
+def left_to_right(x):
+	for i in range(len(str(x)) - 2):
+		x = int(str(x)[1:])
+		if prime_checker(x) == False:
+			return False
+	return True
 
-for filler in allFillers: # Create list of valid fillers to insert between first and last digits
-	stringOfFillers.append(''.join(filler))
+# Continuously removes lasst digit of primes and check if they are prime
+def right_to_left(x):
+	for i in range(len(str(x)) - 2):
+		x = int(str(x)[:len(str(x)) - 1])
+		if prime_checker(x) == False:
+			return False
+	return True
+
+first_digits = ['2', '3', '5', '7'] # Truncatable primes must start with these digits
+
+last_digits = ['3', '7'] # Truncatable primes must end with these digits
+
+truncatable_primes = {3797} # Set of truncatable primes to prevent double counting
+
+counter = 0
 
 # Checks for truncatable primes by creating valid prime with filler 
-while len(validPrimes) < 11:
-	for a in firstDigits:
-		for b in lastDigits:
-			for filler in stringOfFillers:
-				n = int(a + filler + b)
-				if primeChecker(n):
-					if leftToRight(n) and rightToLeft(n):
-						validPrimes.append(n)
+while len(truncatable_primes) < 11:
+	temporary_fillers = []
+	for digits in list((product('1379', repeat = counter))):
+		temporary_fillers.append(''.join(digits))
+	for prefix in first_digits:
+		for suffix in last_digits:
+			for filler in temporary_fillers:
+				n = int(prefix + filler + suffix)
+				if prime_checker(n):
+					if left_to_right(n) and right_to_left(n):
+						truncatable_primes.add(n)
+	counter += 1
 
-print(sum(validPrimes))
+print(sum(truncatable_primes))
 
 end = time.time()
 
-print(end - start) # Programme takes 0.0469 seconds to execute
+print(end - start) # Programme takes 0.0370 seconds to execute

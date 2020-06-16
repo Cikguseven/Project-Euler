@@ -8,13 +8,13 @@ import time
 
 start = time.time()
 
-x = 0
+series = 0
 
-for i in range(1, 1001):
-	x += i ** i
+for n in range(1, 1001):
+	series += n ** n
 
-print(str(x)[-10:])
+print(str(series)[-10:])
 
 end = time.time()
 
-print(end - start) # Executed in 0.0410 seconds
+print(end - start) # Executed in 0.0320 seconds

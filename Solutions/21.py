@@ -7,20 +7,33 @@ For example, the proper divisors of 220 are 1, 2, 4, 5, 10, 11, 20, 22, 44, 55 a
 Evaluate the sum of all the amicable numbers under 10000.
 '''
 
-total = 0 
+import time
 
-for i in range(2, 10001):
-	x = 0
-	y = 0
-	for j in range(1, i):
-		if i%j == 0:
-			x += j
-	for k in range(1, x):
-		if x%k == 0:
-			y += k
-	if y == i and x != y:
-		total += i
+start = time.time()
+
+from math import sqrt
+
+amicable_numbers = []
+
+# Function to obtain sum of divisors of number, n
+def d(n):
+	sum_of_proper_divisors = 1 # 1 is a proper divisor of every positive number
+	for d in range(2, int(sqrt(n)) + 1): # Divisors of numbers come in pairs and we only have to check for divisors less than or equal to its square root to find one of the pairs
+		if n % d == 0:
+			sum_of_proper_divisors += d  
+			if n / d != d: # Counts square root of n only once
+				sum_of_proper_divisors += n / d
+				continue
+	return sum_of_proper_divisors
+
+for i in range(2, 10000):
+	if d(d(i)) == i and d(i) != i:
+		amicable_numbers.append(i)
 	
-print(total)
+print(sum(amicable_numbers))
+
+end = time.time()
+
+print(end - start) # Executed in 0.125 seconds
 
 

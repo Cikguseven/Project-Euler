@@ -18,30 +18,56 @@ import time
 
 start = time.time()
 
-from itertools import permutations
+from functools import reduce
 
-allPermutations = list(permutations('1234567890'))
+# Creates three digit number by adding zeros to the front
+def converter(n):
+    if len(n) < 3:
+        return '0' * (3 - len(n)) + n
+    return n
 
-strings = []
+# Generate multiples of given number under 1000
+def m(n):
+    multiples_of_n = []
+    product = 0
+    i = 1
+    while product < 1000:
+        product = i * n
+        i += 1
+        multiples_of_n.append(product)
+    multiples_of_n.pop()
+    multiples_of_n = list(map(str, multiples_of_n))
+    multiples_of_n = list(map(converter, multiples_of_n))
+    return multiples_of_n
 
-for digits in allPermutations:
-	if int(digits[3]) % 2 == 0 or digits[3] == '0':
-		if digits[5] == '5' or digits[5] == '0':
-			strings.append(''.join(digits))
+def concat(a, b):
+    sub_strings = []
+    for i in a:
+        for j in b:
+            if i[:2] == j[1:] and len(set(j[0] + i)) == len(j[0] + i):
+                sub_strings.append(j[0] + i)
+    return sub_strings
+    
+def missing(pandigital_string):
+    for digit in '0123456789':
+        if digit not in pandigital_string:
+            return digit + pandigital_string
 
-validNumbers = []
+# Generating multiples of 2, 3, 5, 7, 11, 13 & 17
+multiples = [m(17), m(13), m(11), m(7), m(5), m(3), m(2)]
 
-for numbers in strings:
-	if int(numbers[7:10]) % 17 == 0:
-		if int(numbers[6:9]) % 13 == 0:
-			if int(numbers[5:8]) % 11 == 0:
-				if int(numbers[4:7]) % 7 == 0:
-					if int(numbers[2:5]) % 3 == 0:
-						validNumbers.append(int(''.join(numbers)))
+# Combining valid multiples
+solution = reduce(concat, multiples)
 
-print(sum(validNumbers))
+# Adding the missing digit to valid pandigital numbers
+solution = map(missing, solution)
+
+# Converting the valid pandigital numbers to integers
+solution = map(int, solution)
+
+print(sum(solution))
 
 end = time.time()
 
-print(end - start) # Executed in 2.67 seconds
+print(end - start) # Executed in 0.0110 seconds
 

@@ -7,17 +7,25 @@ and the sum of the digits in the number 10! is 3 + 6 + 2 + 8 + 8 + 0 + 0 = 27.
 Find the sum of the digits in the number 100!
 '''
 
-def fds(a):
-	x = 1
-	y = 0
-	for i in range(2, a + 1): # Factorial of a
-		x *= i
-	while x: # Sums digits in number by diving by 10 and adding to existing sum
-		y += x % 10
-		x //= 10
-	print(y)
+import time
 
-fds(100)
+start = time.time()
+
+from math import factorial as fac
+
+factorial_of_100 = fac(100)
+
+sum_of_digits = 0
+
+while factorial_of_100: # Sums digits in number by diving by 10 and adding to existing sum
+	sum_of_digits += factorial_of_100 % 10
+	factorial_of_100 //= 10
+
+print(sum_of_digits)
+
+end = time.time()
+
+print(end - start) # Executed in 0.0 seconds
 
 
 

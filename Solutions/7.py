@@ -8,29 +8,32 @@ import time
 
 start = time.time()
 
-import math
+from math import log
 
-primes = [2, 3, 5, 7, 11]
-n = 13
-d = 2
+def prime_sieve(n):
+    is_prime = [True for i in range(n + 1)] 
+    primes = []
+    for p in range(4, n + 1, 2): # All even p except 2 are not prime
+        is_prime[p] = False
+    p = 3
+    while (p * p <= n):          
+        if (is_prime[p] == True): # If prime[p] is not changed, then it is a prime 
+            for i in range(p * 2, n + 1, p): # Update all multiples of p 
+                is_prime[i] = False
+        p += 2
+    is_prime[0]= False
+    is_prime[1]= False
+    for p in range(3, n + 1, 2): # Appends all odd prime numbers to list representing possible values of b
+        if is_prime[p]:
+        	primes.append(p) 
+    return primes
 
-# Generate primes from odd numbers starting from 13 (n) and appends prime numbers to list, primes, until 10 001 prime numbers are obtained
-while len(primes) < 10002: 
-	# If numbers less than its square root are proper divisors of n, it is not prime and proceeds to next odd number
-	if n % d == 0 and int(math.sqrt(n)) >= d: 
-		n += 2
-		d = 2
-	# Test the next divisor if it is still smaller than the square root of n
-	elif int(math.sqrt(n)) >= d: 
-		d += 1
-	# Number is prime and appended to list primes
-	else: 
-		primes.append(n)
-		n += 2
-		d = 2
-			
-print(primes[10000]) # Displays the 10 001st prime number
+x = 10001 # Nth prime
+
+upper_bound = int(x * log(x) + x * log(log(x))) # Formula to find approximate upper bound value of nth prime
+
+print(prime_sieve(upper_bound)[10000])
 
 end = time.time()
 
-print(end - start) # Programme takes 2.20 seconds to execute
+print(end - start) # Executes in 0.0270 seconds

@@ -13,27 +13,31 @@ import time
 start = time.time()
 
 from math import prod
+
 from fractions import Fraction
 
 numerators = []
+
 denominators = []
 
 for n in range(10, 100): # Iterating numerators, n
-	for d in range(n + 1, 100): # Iterating denominators, j, which are larger than numerators for fraction, k, to be less than 1.
+	for d in range(n + 1, 100): # Iterating denominators, j, which are larger than numerators for fraction, f, to be less than 1.
 		f = n / d
-		if n != d: # Eliminates trivial examples where numerator and denominator are the same
-			# Checks if any digits in numerator and denominator are the same
-			for a in str(n): # Iterates through digits in numerator
-				for b in str(d): # Iterates through digits in denominator
-					if int(a) == int(b) and int(a) != 0: # Eliminates trivial examples where trailing zeros are cancelled
-						newN = str(n).replace(a, '', 1) # Creates new numerator by eliminating common digit
-						newD = str(d).replace(b, '', 1) # Creates new denominator by eliminating common digit
-						if int(newD) != 0 and int(newN) / int(newD) == f: # Prevents division by 0 and checks if new fraction after cancelling is equal to old fraction
-								numerators.append(n) 
-								denominators.append(d)
+		# Checks if any digits in numerator and denominator are the same
+		for a in str(n): # Iterates through digits in numerator
+			for b in str(d): # Iterates through digits in denominator
+				if int(a) == int(b) and int(a) != 0: # Eliminates trivial examples where trailing zeros are cancelled
+					newN = str(n).replace(a, '', 1) # Creates new numerator by eliminating common digit
+					newD = str(d).replace(b, '', 1) # Creates new denominator by eliminating common digit
+					if int(newD) != 0 and int(newN) / int(newD) == f: # Prevents division by 0 and checks if new fraction after cancelling is equal to old fraction
+						numerators.append(n) 
+						denominators.append(d)
+					break
 
-fraction = Fraction(prod(numerators), prod(denominators)) # Simplest form of fraction of products of all valid numerators divided by products of all valid denominator
-print(fraction.denominator) 
+
+simplified_fraction = Fraction(prod(numerators), prod(denominators)) # Simplest form of fraction of products of all valid numerators divided by products of all valid denominator
+
+print(simplified_fraction.denominator) 
 
 end = time.time()
 

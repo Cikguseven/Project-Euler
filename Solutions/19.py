@@ -13,16 +13,24 @@ You are given the following information, but you may prefer to do some research 
 How many Sundays fell on the first of the month during the twentieth century (1 Jan 1901 to 31 Dec 2000)?
 '''
 
-# Use of datetime module to check if dates are Sunday
+import time
 
+start = time.time()
+
+# Use of datetime module to check if dates are Sunday
 from datetime import date
 
-x = 0
+sum = 0
 
-for year in range(1901, 2001): # Years 1901 - 2000
+# Function to check if first day is a Sunday
+for year in range(1901, 2001): # Years in 20th century: 1901 - 2000
     for month in range(1, 13): # January to December
-        day = date(year, month, 1) # Get weekday of first day of all months and years within range
-        if day.weekday() == 6: # Sunday == 6
-        	x += 1
+        day = date(year, month, 1)
+        if day.weekday() == 6: # Value of Sunday is 6
+        	sum += 1
 
-print(x)
+print(sum)
+
+end = time.time()
+
+print(end - start) # Executed in 0.00200 seconds

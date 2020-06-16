@@ -12,70 +12,70 @@ Considering quadratics of the form: n**2 + an + b, where |a| < 1000 and |b| ≤ 
 Find the product of the coefficients, a and b, for the quadratic expression that produces the maximum number of primes for consecutive values of n, starting with n = 0.
 '''
 
-# Generate odd prime numbers <= 1000 using Sieve of Eratosthenes for b as b has to be prime. The only prime numbers left out is b = 2.
+# Generate odd prime numbers <= 1000 using Sieve of Eratosthenes for b. For quadratic expression to be prime when n = 0, b has to be prime. The only prime numbers left out is b = 2.
 
 import time
 
 start = time.time()
 
-b = []
+from math import sqrt
 
-def sieve(n): # From GeeksforGeeks       
-    # Create a boolean array "prime[0..n]" and initialize 
-    # all entries it as true. A value in prime[i] will 
-    # finally be false if i is Not a prime, else true. 
-    prime = [True for i in range(n + 1)] 
-    p = 2
-    while (p * p <= n):          
-        if (prime[p] == True): # If prime[p] is not changed, then it is a prime 
-            for i in range(p * 2, n + 1, p): # Update all multiples of p 
-                prime[i] = False
-        p += 1
-    prime[0]= False
-    prime[1]= False
-    prime[2]= False # Excludes even primes e.g. 2
-    for p in range(n + 1): # Appends all odd prime numbers to list representing possible values of b
-        if prime[p]:
-        	b.append(p) 
-             
+primes = []
+
+def sieve(n):
+	is_prime = [True for i in range(n + 1)] 
+	p = 2
+	while (p * p <= n):          
+	    if (is_prime[p] == True): # If prime[p] is not changed, then it is a prime 
+	    	for i in range(p * 2, n + 1, p): # Update all multiples of p 
+	    		is_prime[i] = False
+	    p += 1
+	is_prime[0]= False
+	is_prime[1]= False
+	is_prime[2]= False # Excludes even primes e.g. 2
+	for p in range(n + 1): # Appends all odd prime numbers to list representing possible values of b
+		if is_prime[p]:
+			primes.append(p) 
+
 sieve(999) 
 
-import math
+def primeChecker(n):
+	for d in range(2, int(sqrt(n)) + 1):
+		if n % d == 0:
+			return False
+	return True
+
+current_max = 39 # From problem: Largest value of known n is 39
+
+answer = 0
 
 # Function to check if quadratic expression generates primes and the largest value of n for which quadratic expression is prime for all integers ≤ n. Returns product of a and b for current largest value of n.
 
-def quadraticPrimeGenerator(quadratic):
-	y = 2
-	global n
-	global currentMax
-	while quadratic > 0:
-		if quadratic % y == 0 and int(math.sqrt(quadratic)) >= y:
-			break
-		elif int(math.sqrt(quadratic)) >= y:
-			y += 1
-		else:
-			n += 1
-			quadratic = (n**2 + a * n + x)
-			y = 2
-	if n > currentMax:
-			currentMax = n - 1
-			print(str(currentMax) + '|' + str(a * x))
+def quadratic_prime_generator(a, b):
+	n = 0
+	quadratic = n ** 2 + a * n + b
+	while quadratic > 0 and primeChecker(quadratic) == True:
+		n += 1
+		quadratic = (n ** 2 + a * n + b)
+	global current_max
+	global answer
+	if n > current_max:
+		current_max = n - 1
+		answer = a * b
 
-currentMax = 39 # From problem: Largest value of known n is 39
-
-# Checking for odd prime values of b. For quadratic expression to be prime, when n = 0, b has to be prime. Since all primes except 2 are odd, first check quadratic expressions where b is an odd prime. For n = 1, 1 + a + b has to be prime as well. As such, if b is odd, a has to be a negative or positive odd number. Result: n**2 - 61n + 971 are primes for 0 ≤ n ≤ 70.
+# Checking if quadratic expressions are prime where b is an odd prime. For n = 1, 1 + a + b has to be prime as well. As such, if b is odd, a has to be a negative or positive odd number. Result: n ** 2 - 61n + 971 are primes for 0 ≤ n ≤ 70.
 
 for a in range(-999, 1000, 2):
-	for x in b:
-		n = 0
-		quadraticPrimeGenerator(n**2 + a * n + x)
+	for x in primes:
+		quadratic_prime_generator(a, x)
 		
-# Checking for b = 2. Since b is now even, a has to be even so that n**2 + an + b is prime for n = 1.
+# Checking for b = 2. Since b is now even, a has to be even so that n ** 2 + an + b is prime for n = 1.
 
 for a in range(-998, 999, 2): 
-	n = 0
-	x = 2
-	quadraticPrimeGenerator(n**2 + a * n + 2)
+	quadratic_prime_generator(a, 2)
+
+print(answer)
 	
 end = time.time()
-print(end - start) # Programme takes 2.81 seconds to execute
+
+print(end - start) # Programme takes 1.69 seconds to execute

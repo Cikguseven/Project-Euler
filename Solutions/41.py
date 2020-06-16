@@ -12,28 +12,36 @@ from math import sqrt
 
 from itertools import permutations
 
-def primeChecker(x):
+def prime_checker(x):
 	for d in range(2, int(sqrt(x)) + 1):
-		if x % d == 0 and x != d:
+		if x % d == 0:
 			return False
 	return True
 
-currentMax = 0
+largest = 0
 
-currentString = ''
+n = 9
 
-for i in range(1, 10):
-	currentString += str(i)
-	x = list(permutations(currentString))
-	y = []
-	for digits in x:
-		y.append(''.join(digits)) 
-	for numbers in y:
-		if numbers[0] != 0 and primeChecker(int(numbers)) == True and int(numbers) > currentMax:
-			currentMax = int(numbers)
+valid_digits = '123456789'
 
-print(currentMax)
+flag = True
+
+# Checks for largest pandigital number starting from numbers that uses all 9 digits and works backwards
+while flag:
+	string_of_digits = valid_digits
+	digit_permutations = list(permutations(string_of_digits))
+	all_numbers = []
+	for digits in digit_permutations:
+		all_numbers.append(''.join(digits)) 
+	for numbers in all_numbers:
+		if prime_checker(int(numbers)) == True and int(numbers) > largest:
+			largest = int(numbers)
+			flag = False
+	valid_digits = string_of_digits.replace(str(n), '')
+	n -= 1
+
+print(largest)
 				
 end = time.time()
  
-print(end - start) # Executed in 0.996 seconds
+print(end - start) # Executed in 0.953 seconds

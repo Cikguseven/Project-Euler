@@ -17,34 +17,34 @@ import time
 
 start = time.time()
 
-# Function to generate number of distinct prime factors, taken from radiusofcircle.blogspot.com
-def npf(n):
+# Function to generate number of distinct prime factors
+def number_of_prime_factors(n):
 	d = 2
-	setOfFactors = set()
+	factors = set()
 	# Test divisors until square root of number as there is only one prime factor after the square root
 	while d < n ** 0.5 or n == 1: 
 		if n % d == 0:
 			n = n / d
-			setOfFactors.add(d)
+			factors.add(d)
 			d -= 1
 		d += 1
-	return (len(setOfFactors) + 1)
+	return (len(factors) + 1)
 
-x = 210 # Smallest number with 4 distinct prime factors
+x = 2 * 3 * 5 * 7 # Smallest number with 4 distinct prime factors
 
 while True:
-	if npf(x) == 4:
+	if number_of_prime_factors(x) == 4:
 		x += 1
-		if npf(x) == 4:
+		if number_of_prime_factors(x) == 4:
 			x += 1
-			if npf(x) == 4:
+			if number_of_prime_factors(x) == 4:
 				x += 1
-				if npf(x) == 4:
+				if number_of_prime_factors(x) == 4:
 					print(x - 3)
 					break
 	x += 1
 
 end = time.time()
 
-print(end - start) # Executed in 5.16 seconds
+print(end - start) # Executed in 4.04 seconds
 

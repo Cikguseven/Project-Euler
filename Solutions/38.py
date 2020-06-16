@@ -16,22 +16,21 @@ import time
 
 start = time.time()
 
-valid = set('123456789')
+valid_digits = set('123456789')
 
-currentMax = 0
+largest = 0
 
-for i in range(1, 10000):
-	tempProduct = ''
-	j = 1
-	while len(tempProduct) < 9:
-		tempProduct += str(i * j)
-		j += 1
-	if len(tempProduct) == 9 and set(tempProduct) == valid and int(tempProduct) > currentMax:
-		currentMax = int(tempProduct)
+for n in range(1, 9877):
+	product = ''
+	counter = 1
+	while len(product) < 9:
+		product += str(n * counter)
+		counter += 1
+	if len(product) == 9 and set(product) == valid_digits and int(product) > largest:
+		largest = int(product)
 		
-print(f'{currentMax}')
+print(largest)
 
 end = time.time()
 
-print(end - start) # Executed in 0.0156 seconds
-
+print(end - start) # Executed in 0.0220 seconds

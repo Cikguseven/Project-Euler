@@ -24,25 +24,29 @@ What is the index of the first term in the Fibonacci sequence to contain 1000 di
 '''
 
 import time
+
 start = time.time() 
 
-a = 1
+a = 1 
+
 b = 1
-n = 2
+
+index = 2
+
 x = 10 ** 999 # Smallest 1000 digit number
 
 while True: # Generate Fibonacci numbers and stops if number reaches length of 1000
     a = a + b
-    n += 1
+    index += 1
     if a >= x:
         break
-    else:
-        b = a + b
-        n += 1
-        if b >= x:
-            break
+    b = a + b
+    index += 1
+    if b >= x:
+        break
 
-print(n) # Prints index of first term with 1000 digits
+print(index) # Prints index of first term with 1000 digits
 
 end = time.time()
-print(end - start)
+
+print(end - start) # Executes in 0.00400 seconds

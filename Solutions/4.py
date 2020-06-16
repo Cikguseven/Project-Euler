@@ -5,15 +5,24 @@ The largest palindrome made from the product of two 2-digit numbers is 9009 = 91
 Find the largest palindrome made from the product of two 3-digit numbers.
 '''
 
-products = []
-l = []
+import time
 
-for i in range(100,1000):
-	for k in range(100,1000):
-		products.append(i * k)
-		
-for j in products:
-	if str(j)[::-1] == str(j):
-		l.append(j)
+start = time.time()
 
-print(max(l))
+largest = 0
+
+for a in range(999, 99, -1):
+	for b in range(999, 99, -1):
+		if a * b > largest:
+			if str(a * b)[::-1] == str(a * b):
+				largest = a * b
+				break
+			else:
+				continue
+		break
+
+print(largest)
+
+end = time.time()
+
+print(end - start) # Executed in 0.00901 seconds

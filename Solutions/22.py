@@ -12,30 +12,30 @@ start = time.time()
 
 import os
 
-cur_path = os.path.dirname(__file__)
+current_path = os.path.dirname(__file__)
 
-new_path = os.path.relpath('..\\Additional files\\22_names.txt', cur_path)
+new_path = os.path.relpath('..\\Additional files\\22_names.txt', current_path)
 
-nameFile = open(new_path, 'r')
+name_file = open(new_path, 'r')
 
-nameList = sorted(nameFile.read().replace('"','').split(','),key=str)
+name_list = sorted(name_file.read().replace('"','').split(','),key=str)
 
-letterToNumDict = {"A": 1, "B": 2, "C": 3, "D": 4, "E": 5, "F": 6, "G": 7, "H": 8, "I": 9, "J": 10, "K": 11, "L": 12, "M": 13, "N": 14, "O": 15, "P": 16, "Q": 17, "R": 18, "S": 19, "T": 20, "U": 21, "V": 22 , "W": 23, "X": 24, "Y": 25, "Z": 26}
+letter_to_number_dic = {"A": 1, "B": 2, "C": 3, "D": 4, "E": 5, "F": 6, "G": 7, "H": 8, "I": 9, "J": 10, "K": 11, "L": 12, "M": 13, "N": 14, "O": 15, "P": 16, "Q": 17, "R": 18, "S": 19, "T": 20, "U": 21, "V": 22 , "W": 23, "X": 24, "Y": 25, "Z": 26}
 
-def letterToNum(nstring): # Converts letters in name to equivalent numerical value
-	x = 0
-	for i in nstring:
-		x += letterToNumDict[i]
-	return x
+def letter_to_number(name): # Converts letters in name to equivalent numerical value
+	name_sum = 0
+	for i in name:
+		name_sum += letter_to_number_dic[i]
+	return name_sum
 
-total = 0
+total_score = 0
 
-for name in nameList: # Sums product of numerical value of name and rank in alphabetical order
-	total += letterToNum(name) * (nameList.index(name) + 1)
+for names in name_list: # Sums product of numerical value of name and rank in alphabetical order
+	total_score += letter_to_number(names) * (name_list.index(names) + 1)
 	
-print(total)
+print(total_score)
 
-nameFile.close()
+name_file.close()
 
 end = time.time()
 

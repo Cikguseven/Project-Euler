@@ -5,14 +5,22 @@ If all the numbers from 1 to 1000 (one thousand) inclusive were written out in w
 
 NOTE: Do not count spaces or hyphens. For example, 342 (three hundred and forty-two) contains 23 letters and 115 (one hundred and fifteen) contains 20 letters. The use of "and" when writing out numbers is in compliance with British usage.
 '''
+import time
+
+start = time.time()
 
 # Use of inflect module to convert number to words
-
 import inflect
+
 p = inflect.engine()
-x = 0
+
+number_of_letters = 0
 
 for i in range(1, 1001):
-	x += len(p.number_to_words(i).replace("-", "").replace(" ", "")) # Remove spaces and hyphens in words
+	number_of_letters += len(p.number_to_words(i).replace("-", "").replace(" ", "")) # Remove spaces and hyphens in words
 
-print(x)
+print(number_of_letters)
+
+end = time.time()
+
+print(end - start) # Executed in 0.838 seconds

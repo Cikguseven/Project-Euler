@@ -12,24 +12,28 @@ import time
 
 start = time.time()
 
-pentagonalNumbers = [0]
-
-for n in range(1, 2168):
-	pentagonalNumbers.append(int((n * (3 * n - 1)) / 2))
-
+# Test for pentagonal numbers from Wikipedia
 def pentagonal(n):
     if (((24 * n + 1) ** 0.5) + 1) % 6 == 0:
         return True
     return False
 
-for i in range(1, 2168):
-	for j in range(i + 1, 2168):
-		add = pentagonalNumbers[i] + pentagonalNumbers[j]
-		if pentagonal(add):
-			minus = pentagonalNumbers[j] - pentagonalNumbers[i]
-			if pentagonal(minus):
-				print(f'{minus}')
+pentagonal_numbers = []
+
+i = 1
+
+flag = True
+
+while flag:
+	pk = int((i * (3 * i - 1)) / 2)
+	pentagonal_numbers.append(pk)
+	for pj in pentagonal_numbers:
+		if pentagonal(pk + pj) and pentagonal(pk - pj):
+			print(pk - pj)
+			flag = False
+			break
+	i += 1
 
 end = time.time()
 
-print(end - start) # Executed in 2.19 seconds
+print(end - start) # Executed in 2.73 seconds

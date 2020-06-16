@@ -8,26 +8,37 @@ As 12 is the smallest abundant number, 1 + 2 + 3 + 4 + 6 = 16, the smallest numb
 Find the sum of all the positive integers which cannot be written as the sum of two abundant numbers.
 '''
 
+import time
+
+start = time.time()
+
 from math import sqrt
 
 limit = 20162 # From Wikipedia: Upper limit is 20161 and not 28123
-x = 0
-abn = set()
 
+sum = 0
+
+abundant_numbers = set()
+
+# Function to obtain sum of divisors of number, n
 def d(n):
-	x = 1
-	y = sqrt(n)
-	for i in range(2, int(y) + 1): # Check for proper divisors starting from 2
-		if n % i == 0:
-			x += i 
-			if n / i != i: # Prevents counting the square root twice
-				x += n / i
-	return x
+	sum_of_proper_divisors = 1 # 1 is a proper divisor of every positive number
+	for d in range(2, int(sqrt(n)) + 1): # Divisors of numbers come in pairs and we only have to check for divisors less than or equal to its square root to find one of the pairs
+		if n % d == 0:
+			sum_of_proper_divisors += d  
+			if n / d != d: # Counts square root of n only once
+				sum_of_proper_divisors += (n / d)
+				continue
+	return sum_of_proper_divisors
 
-for n in range(1, limit):
-	if d(n) > n:
-		abn.add(n)
-	if not any((n-a in abn) for a in abn):
-		x += n
+for i in range(1, limit):
+	if d(i) > i: # Checks if number, i, is abundant
+		abundant_numbers.add(i)
+	if not any((i - a in abundant_numbers) for a in abundant_numbers):
+		sum += i
 
-print(x) # Sum of triangular numbers from 1 to 20161: 203243041. x must be lower than this theoretical limit.
+print(sum) # Sum of triangular numbers from 1 to 20161: 203243041. x must be smaller than this limit.
+
+end = time.time()
+
+print(end - start) # Executed in 0.680 seconds

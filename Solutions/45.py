@@ -13,29 +13,30 @@ import time
 
 start = time.time()
 
-flag = True
-
-i = 286
-
-def pentagonal(n): # Test for pentagonal numbers from Wikipedia
+# Test for pentagonal numbers from Wikipedia
+def pentagonal(n): 
 	if (((24 * n + 1) ** 0.5) + 1) % 6 == 0:
 		return True
 	return False
 
-def hexagonal(n): # Test for hexagonal numbers from Wikipedia
+# Test for hexagonal numbers from Wikipedia
+def hexagonal(n): 
 	if (((8 * n + 1) ** 0.5) + 1) % 4 == 0:
 		return True
 	return False
 
+i = 286
+
+flag = True
+
 while flag:
-	triangleNumber = int((i * (i + 1)) / 2)
-	if pentagonal(triangleNumber) and hexagonal(triangleNumber):
-		print(triangleNumber)
+	triangle_number = int((i * (i + 1)) / 2)
+	if pentagonal(triangle_number) and hexagonal(triangle_number):
+		print(triangle_number)
 		flag = False
-	else:
-		i += 1
-		print(i)
+		break
+	i += 1
 
 end = time.time()
 
-print(end - start) # Executed in 0.578 seconds
+print(end - start) # Executed in 0.0861 seconds

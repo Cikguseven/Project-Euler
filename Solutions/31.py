@@ -10,10 +10,13 @@ It is possible to make £2 in the following way:
 How many different ways can £2 be made using any number of coins?
 '''
 
-# Breaks down problem by calculating number of ways change can be given in smaller denominations. Does not consider 1p coins as they will be automatically added to fill up every way.
+import time
+
+start = time.time()
 
 count = 0
 
+# Breaks down problem by calculating number of ways change can be given in smaller denominations. Does not consider 1p coins as they will be automatically added to fill up every way.
 for a in range(3): # Possible number of £1 coins
 	for b in range(1 + int((200 - 100 * a) / 50)): # Possible number of 50p coins
 		for c in range(1 + int((200 - 100 * a - 50 * b) / 20)): # Possible number of 20p coins
@@ -22,6 +25,10 @@ for a in range(3): # Possible number of £1 coins
 					for f in range(1 + int((200 - 100 * a - 50 * b - 20 * c - 10 * d - 5 * e) / 2)): # Possible number of 2p coins
 						count += 1
 									
-print(count + 1) # Total no. of ways + 1 way with 1x£2 coin								
+print(count + 1) # Total no. of ways + 1 way with 1 x £2 coin
+
+end = time.time()
+
+print(end - start) # Executed in 0.0110 seconds				
 
 						

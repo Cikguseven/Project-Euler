@@ -29,6 +29,10 @@ Find the maximum total from top to bottom of the triangle below:
 NOTE: As there are only 16384 routes, it is possible to solve this problem by trying every route. However, Problem 67, is the same challenge with a triangle containing one-hundred rows; it cannot be solved by brute force, and requires a clever method! ;o)
 '''
 
+import time
+
+start = time.time()
+
 pyramid = '''
 75
 95 64
@@ -47,26 +51,31 @@ pyramid = '''
 04 62 98 27 23 09 70 98 73 93 38 53 60 04 23
 '''
 
-# Generate nested list with seperated elements
-nL = []
-for i in range(15):
-	nL.append(pyramid.strip().split('\n')[i].split())
+nested_list = []
 
-# Top down summation
-for i in range(15):
-	if i == 0:
-		for k in range(2):
-			nL[1][k] = int(nL[1][k]) + int(nL[0][0])
-	elif i > 1:
-		nL[i][0] = int(nL[i - 1][0]) + int(nL[i][0])
-		nL[i][i] = int(nL[i - 1][i - 1]) + int(nL[i][i])
-		for j in range(1, i): 
-			if int(nL[i - 1][j - 1]) > int(nL[i - 1][j]):
-				nL[i][j] = int(nL[i - 1][j - 1]) + int(nL[i][j])
-			else:
-				nL[i][j] = int(nL[i - 1][j]) + int(nL[i][j])
+formatted_pyramid = pyramid.strip().split('\n') # Remove whitespaces in pyramid and split them based on newlines
 
-print(max(nL[14]))
+# Creates a nested list with elements separated
+for i in range(15): 
+	nested_list.append(formatted_pyramid[i].split())
+	nested_list[i] = [int(x) for x in nested_list[i]]
+
+# Adds value of first row to numbers in second row as for loop below is unable to be applied to first row
+for k in range(2):
+	nested_list[1][k] += nested_list[0][0]
+
+# Top down dynamic summation
+for i in range(2, 15):
+	nested_list[i][0] += nested_list[i - 1][0] 
+	nested_list[i][i] += nested_list[i - 1][i - 1] 
+	for j in range(1, i): 
+		nested_list[i][j] += max(nested_list[i - 1][j], nested_list[i - 1][j - 1])
+
+print(max(nested_list[14]))
+
+end = time.time()
+
+print(end - start) # Executed in 0.0 seconds
 
 
 

@@ -17,43 +17,42 @@ Find the value of d < 1000 for which 1/d contains the longest recurring cycle in
 '''
 
 import time
+
 start = time.time()
 
-import sys  
-sys.setrecursionlimit(10**4) # Allows for calculation of d >= 541
+longest = 0 # Length of current longest recurring decimal
 
-remainders = [] # List where remainders at every step of long division is appended to
-currentLongest = 0 # Length of current longest recurring decimal
-currentMax = 0 # Number with current longest recurring decimals when 1 divides it 
+d = 0 # Number with current longest recurring decimal
 
-def rLD(a, b, i): # Recursive long division to obtain length of recurring decimals
-	global currentLongest
-	global currentMax
-	if a % b == 0: # Terminates function if long division has no remainder at any step
-		return
-	elif str(a) in remainders: # Terminates function if remainder repeats and returns length of recurring decimal
-		if (len(remainders) - remainders.index(str(a))) > currentLongest:
-			currentLongest = (len(remainders) - remainders.index(str(a)))
-			currentMax = b
-		return
-	elif a // b == 0: # 'Shifts' a decimal place if dividend is too small to obtain quotient
-		if i >= 1:
-			remainders.append(str(0))
-		a *= 10
-		i += 1
-		rLD(a, b, i)
-	else: # Appends remainder to list and continues long division
-		remainders.append(str(a))
-		a = a % b
-		i = 0
-		rLD(a, b, i)
+# Function that performs long division to obtain length of recurring decimals where a is dividend, b is divisor and i is counter for length of recurring decimal
+def recursive_long_division(a, b):
+	global longest
+	global d
+	i = 0
+	remainders = [] # List where remainders at every step of long division is appended to
+	while True:
+		if a % b == 0: # Terminates function if long division has no remainder at any step
+			return 
+		elif a in remainders: # Terminates function if remainder repeats and returns length of recurring decimal
+			if (len(remainders) - remainders.index(a)) > longest:
+				longest = (len(remainders) - remainders.index(a))
+				d = b
+			return
+		elif a // b == 0: # 'Shifts' a decimal place if dividend is too small to obtain quotient
+			if i >= 1:
+				remainders.append(0)
+			a *= 10
+			i += 1
+		else: # Appends remainder to list and continues long division
+			remainders.append(a)
+			a = a % b
+			i = 0
 
-for j in range(1, 1001, 2): # Skip even numbers as they are observed to have very short or no recurring decimals
-	rLD(1, j, 0)
-	quotient = []
-	remainders = []
-
-print(currentMax)
+for j in range(3, 1000, 2): # Skip even numbers as they are observed to have very short or no recurring decimals
+	recursive_long_division(1, j)
+		
+print(d)
 
 end = time.time()
-print(end - start)
+
+print(end - start) # Executes in 0.489 seconds 

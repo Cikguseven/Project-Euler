@@ -14,38 +14,34 @@ from math import sqrt, fabs
 
 from itertools import permutations
 
-# Check if number, x, is prime
-def primeChecker(x):
-	for d in range(2, int(sqrt(x)) + 1):
-		if x % d == 0:
+def prime_checker(n):
+	if n % 2 == 0:
+		return False
+	for d in range(3, int(sqrt(n)) + 1, 2):
+		if n % d == 0:
 			return False
 	return True
 
-primes = set()
-
-for n in range(1489, 10000): # 1487 is the first case
-	if primeChecker(n) == True:
-		primes.add(n)
+primes = [n for n in range(1000, 10000) if prime_checker(n) == True]
 
 # Excludes example in output
 primes.remove(4817) 
 primes.remove(8147)
 
-for prime in primes: # Iterates through 4 digit primes
-	tempPermutations = list(permutations(str(prime))) # Generate permutations of prime
-	tempSet = set()
-	for tuples in tempPermutations:
-		tempSet.add(''.join(tuples)) # Unique permutations of prime
-	if len(tempSet) >= 3: # Prime needs to have at least 3 unique permutations including itself
-		for strings in tempSet:
-			if int(strings) > 1000:
-				if primeChecker(int(strings)) == True and int(strings) != prime:
-					diff = int(fabs(int(strings) - prime))
-					a = (prime + diff)
-					if str(a) in tempSet and a != int(strings) and a in primes:
-						print(f'{int(strings)}{prime}{a}')
-						break
+for prime in primes: 
+	digit_permutations = list(permutations(str(prime))) # Generates list of digits of permutations of primes
+	set_of_permutations = {''.join(tuples) for tuples in digit_permutations} # String digits to obtain unique permutations of prime and add them to set
+	if len(set_of_permutations) >= 3: # Prime needs to have at least 3 unique permutations including itself
+		set_of_permutations.remove(str(prime))
+		set_of_permutations = sorted(map(int, set_of_permutations))
+		for number in set_of_permutations:
+			if prime_checker(number) == True and number > 1000:
+				difference = fabs(number - prime)
+				largest_permutation = int(number + difference)
+				if largest_permutation in set_of_permutations and largest_permutation in primes:
+					print(f'{prime}{number}{largest_permutation}')
+					break
 
 end = time.time()
 
-print(end - start) # Executed in 0.102 seconds
+print(end - start) # Executed in 0.0500 seconds

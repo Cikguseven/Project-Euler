@@ -16,19 +16,18 @@ import time
 
 start = time.time()
 
-valid = []
-z = 0
+sum_of_valid_numbers = 0
 
-for i in range(10, 354294): 
-	x = str(i)
-	y = 0
-	for a in x:
-		y += int(a) ** 5
-	if y == i:
-		z += i
+for n in range(10, 354294): 
+	string_of_number = str(n)
+	sum_of_digits = 0
+	for digits in string_of_number:
+		sum_of_digits += int(digits) ** 5
+	if sum_of_digits == n:
+		sum_of_valid_numbers += n
 
-print(z)
+print(sum_of_valid_numbers)
 		
 end = time.time()
 
-print(end - start)
+print(end - start) # Executed in 1.37 seconds

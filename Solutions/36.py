@@ -12,26 +12,19 @@ start = time.time()
 
 from math import floor, log2
 
-validNumbers = []
+valid_numbers = []
 
 # In-built decimal to binary converter
-def decToBin(n): 
-    return bin(n).replace("0b", "")
+def decimal_to_binary(n): 
+    return str(bin(n).replace("0b", ""))
 
-# Check for odd numbers which are palindromes. Even numbers can be excluded as last digit of equivalent binary would be 0 and will not have a valid palindrome
-for i in range(1, 1000000, 2): 
-	binaryNumber = decToBin(i)
-	if str(i) == str(i)[::-1] and str(binaryNumber) == str(binaryNumber)[::-1]:
-		print(f'{i} | {binaryNumber}')
-		validNumbers.append(i)
+# Check for odd numbers which are palindromes. Even numbers can be excluded as last digit of equivalent binary will be 0 and will not have a valid palindrome.
+for n in range(1, 1000000, 2): 
+	if str(n) == str(n)[::-1] and decimal_to_binary(n) == decimal_to_binary(n)[::-1]:
+		valid_numbers.append(n)
 
-print(sum(validNumbers))
+print(sum(valid_numbers))
 
 end = time.time()
 
-print(end - start) # Executed in 0.680 seconds
-
-
-
-
-
+print(end - start) # Executed in 0.397 seconds

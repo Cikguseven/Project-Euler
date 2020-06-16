@@ -4,10 +4,18 @@
 What is the sum of the digits of the number 2**1000?
 '''
 
+import time
+
+start = time.time()
+
 value = 2 ** 1000
-x = 0
+sum = 0
 
 for i in str(value):
-	x += int(i)
+	sum += int(i)
 
-print(x)
+print(sum)
+
+end = time.time()
+
+print(end - start) # Executed in 0.0 seconds

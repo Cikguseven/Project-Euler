@@ -4,19 +4,29 @@
 What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
 '''
 
-# Obtain prime factors of numbers from 1 to 20
+import time
 
-for i in range(4,21):
-	j = 2
-	pfactors = []
-	while i > 1:
-		if i%j == 0:
-			i /= j
-			pfactors.append(j)
-		else:
-			j += 1
-	print(pfactors)
+start = time.time()
 
-print((2 ** 4) * (3 ** 2) * 5 * 7 * 11 * 13 * 17 * 19)
+# To find the least common multiple (LCM) of 1 - 20, we can consider the LCM of 2 numbers at a time starting from 2 and 3 and compare it with the susbsequent number. LCM can be found by dividing the product of two numbers by their greatest common divisor (GCD).
+def gcd(a, b): # Generate GCD using Euclid's Algorithm where b > a
+	remainder = 1
+	while remainder != 0:
+		remainder = b % a
+		b = a
+		a = remainder
+	return b
 
+def lcm(a, b):
+	return (a * b) / gcd(a, b)
 
+x = lcm(2, 3)
+
+for i in range(4 , 21):
+	x = lcm(i, x)
+
+print(int(x))
+
+end = time.time()
+
+print(end - start) # Executed in 0.0 seconds

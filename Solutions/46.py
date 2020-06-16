@@ -20,38 +20,39 @@ start = time.time()
 from math import sqrt
 
 # Check if odd x is composite
-def compositeChecker(n):
+def composite_checker(n):
 	for d in range(3, int(sqrt(n)) + 1, 2):
 		if n % d == 0:
 			return True
 	return False
 
 # Checks if n is prime
-def primeChecker(n):
-	for d in range(2, int(sqrt(n)) + 1):
+def prime_checker(n):
+	if n % 2 == 0:
+		return False
+	for d in range(3, int(sqrt(n)) + 1, 2):
 		if n % d == 0:
 			return False
 	return True		
 
+x = 15
+
 flag = True
 
-x = 11
-
 while flag:
-	if compositeChecker(x):
+	if composite_checker(x):
 		# Checks if composite odd number x can be written in valid expression
 		for i in range(1, int((x / 2) ** 0.5) + 1):
 			n = x - 2 * (i ** 2)
-			if primeChecker(n): 
-				x += 2
+			if prime_checker(n): 
 				break
 			# x cannot be written as sum of prime and square of i
 			elif i == int((x / 2) ** 0.5): 
 				print(x)
 				flag = False
-	else:
-		x += 2
+				break
+	x += 2
 
 end = time.time()
 
-print(end - start) # Executed in 0.0360 seconds
+print(end - start) # Executed in 0.0310 seconds
