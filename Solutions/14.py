@@ -7,7 +7,9 @@ n → 3n + 1 (n is odd)
 Using the rule above and starting with 13, we generate the following sequence:
 13 → 40 → 20 → 10 → 5 → 16 → 8 → 4 → 2 → 1
 
-It can be seen that this sequence (starting at 13 and finishing at 1) contains 10 terms. Although it has not been proved yet (Collatz Problem), it is thought that all starting ns finish at 1.
+It can be seen that this sequence (starting at 13 and finishing at 1) contains
+10 terms. Although it has not been proved yet (Collatz Problem), it is thought
+that all starting ns finish at 1.
 
 Which starting n, under one million, produces the longest chain?
 
@@ -27,21 +29,22 @@ dict[1] = 1
 dict[2] = 2
 
 for n in range(3, 1000000):
-	counter = 0
-	original_number = n
-	while n > 1:
-		if n < original_number:
-			dict[original_number] = dict[n] + counter
-			break
-		if n % 2 == 0:
-			n /= 2
-			counter += 1
-		else:
-			n = 3 * n + 1
-			counter += 1
+    counter = 0
+    number = n
+    while n > 1:
+        if n < number:
+            dict[number] = dict[n] + counter
+            break
+        if n % 2 == 0:
+            n /= 2
+            counter += 1
+        else:
+            n = 3 * n + 1
+            counter += 1
 
-print(max(dict.items(), key = itemgetter(1))[0])
+print(max(dict.items(), key=itemgetter(1))[0])
 
 end = time.time()
 
-print(end - start) # Executed in 3.39 seconds
+# Executes in 3.39 seconds
+print(end - start)

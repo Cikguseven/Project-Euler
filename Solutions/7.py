@@ -10,30 +10,34 @@ start = time.time()
 
 from math import log
 
+x = 10001
+
+# Formula to find approximate upper bound value of nth prime
+upper_bound = int(x * log(x) + x * log(log(x)))
+
+
 def prime_sieve(n):
-    is_prime = [True for i in range(n + 1)] 
+    is_prime = [True for i in range(n + 1)]
     primes = []
-    for p in range(4, n + 1, 2): # All even p except 2 are not prime
+    for p in range(4, n + 1, 2):
         is_prime[p] = False
     p = 3
-    while (p * p <= n):          
-        if (is_prime[p] == True): # If prime[p] is not changed, then it is a prime 
-            for i in range(p * 2, n + 1, p): # Update all multiples of p 
+    while (p * p <= n):
+        if is_prime[p]:
+            for i in range(p * 2, n + 1, p):
                 is_prime[i] = False
         p += 2
-    is_prime[0]= False
-    is_prime[1]= False
-    for p in range(3, n + 1, 2): # Appends all odd prime numbers to list representing possible values of b
+    is_prime[0] = False
+    is_prime[1] = False
+    for p in range(3, n + 1, 2):
         if is_prime[p]:
-        	primes.append(p) 
+            primes.append(p)
     return primes
 
-x = 10001 # Nth prime
-
-upper_bound = int(x * log(x) + x * log(log(x))) # Formula to find approximate upper bound value of nth prime
 
 print(prime_sieve(upper_bound)[10000])
 
 end = time.time()
 
-print(end - start) # Executes in 0.0270 seconds
+# Executes in 0.0270 seconds
+print(end - start)

@@ -11,18 +11,19 @@ import time
 
 start = time.time()
 
-from math import factorial as fac
+from math import factorial
 
-n = fac(100)
+n = factorial(100)
 
 solution = 0
 
-while n: # Sums digits in number by diving by 10 and adding to existing sum
-	solution += n % 10
-	n //= 10
+while n:
+    solution += n % 10
+    n //= 10
 
 print(solution)
 
 end = time.time()
 
-print(end - start) # Executed in 0.0 seconds
+# Executes in 0.0 seconds
+print(end - start)

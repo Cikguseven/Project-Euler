@@ -1,5 +1,6 @@
 '''
-In the United Kingdom the currency is made up of pound (£) and pence (p). There are eight coins in general circulation:
+In the United Kingdom the currency is made up of pound (£) and pence (p).
+There are eight coins in general circulation:
 
     1p, 2p, 5p, 10p, 20p, 50p, £1 (100p), and £2 (200p).
 
@@ -16,17 +17,22 @@ start = time.time()
 
 solution = 0
 
-# Breaks down problem by calculating number of ways change can be given in smaller denominations. Does not consider 1p coins as they will be automatically added to fill up every way.
-for a in range(3): # Possible number of £1 coins
-	for b in range(1 + int((200 - 100 * a) / 50)): # Possible number of 50p coins
-		for c in range(1 + int((200 - 100 * a - 50 * b) / 20)): # Possible number of 20p coins
-			for d in range(1 + int((200 - 100 * a - 50 * b - 20 * c) / 10)): # Possible number of 10p coins
-				for e in range(1 + int((200 - 100 * a - 50 * b - 20 * c - 10 * d) / 5)): # Possible number of 50p coins
-					for f in range(1 + int((200 - 100 * a - 50 * b - 20 * c - 10 * d - 5 * e) / 2)): # Possible number of 2p coins
-						solution += 1
-									
-print(solution + 1) # Total no. of ways + 1 way with 1 x £2 coin
+# Breaks down problem by calculating number of ways change can be given in
+# smaller denominations starting from 1 pound. Does not consider 1p coins as
+# they will be automatically added to fill up in every way.
+for a in range(3):
+    for b in range(1 + int((200 - 100 * a) / 50)):
+        for c in range(1 + int((200 - 100 * a - 50 * b) / 20)):
+            for d in range(1 + int((200 - 100 * a - 50 * b - 20 * c) / 10)):
+                for e in range(1 + int((200 - 100 * a - 50 * b - 20 * c - 10
+                                        * d) / 5)):
+                    for f in range(1 + int((200 - 100 * a - 50 * b - 20 * c
+                                            - 10 * d - 5 * e) / 2)):
+                        solution += 1
+
+print(solution + 1)
 
 end = time.time()
 
-print(end - start) # Executed in 0.0110 seconds
+# Executes in 0.0110 seconds
+print(end - start)

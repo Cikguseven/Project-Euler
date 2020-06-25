@@ -8,18 +8,19 @@ import time
 
 start = time.time()
 
-n = 600851475143
+solution = 600851475143
 
 d = 2
 
-while d < n:
-	if n % d == 0:
-		n /= d
-		d -= 1
-	d += 1
+while d < solution:
+    if solution % d == 0:
+        solution /= d
+        d -= 1
+    d += 1
 
-print(int(n))
+print(solution)
 
 end = time.time()
 
-print(end - start) # Executed in 0.00200 seconds
+# Executes in 0.00200 seconds
+print(end - start)
