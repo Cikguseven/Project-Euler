@@ -22,9 +22,9 @@ from math import sqrt
 
 import os
 
-cur_path = os.path.dirname(__file__)
+current_path = os.path.dirname(__file__)
 
-new_path = os.path.relpath('..\\Additional files\\42_words.txt', cur_path)
+new_path = os.path.relpath('..\\Additional files\\42_words.txt', current_path)
 
 word_file = open(new_path, 'r')
 
@@ -32,20 +32,12 @@ word_list = sorted(word_file.read().replace('"', '').split(','), key=str)
 
 counter = 0
 
-triangle_numbers = []
-
-
-def letter_to_number(word):
-    global counter
+for word in word_list:
     sum = 0
     for character in word:
         sum += ord(character) - 64
     if sqrt(8 * sum + 1) == int(sqrt(8 * sum + 1)):
         counter += 1
-
-
-for word in word_list:
-    letter_to_number(word)
 
 print(counter)
 
@@ -53,5 +45,5 @@ word_file.close()
 
 end = time.time()
 
-# Executes in 0.00400 seconds
+# Executes in 0.0 seconds
 print(end - start)
