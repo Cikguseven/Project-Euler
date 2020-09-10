@@ -65,13 +65,15 @@ poker_file = open(new_path, 'r')
 
 raw_games = poker_file.read().splitlines()
 
+print(raw_games)
+
 p1_hands = []
 
-p1_scores = [0 for i in range(501)]
+p1_scores = [0 for i in range(1000)]
 
 p2_hands = []
 
-p2_scores = [0 for i in range(501)]
+p2_scores = [0 for i in range(1000)]
 
 poker_games = []
 
@@ -82,16 +84,52 @@ for rounds in poker_games:
     p1_hands.append(sorted(rounds[:5]))
     p2_hands.append(sorted(rounds[5:]))
 
-def royal_flush_checker(hand):
+
+
+'''
+def set_getter(hand):
     suits = set()
     for cards in hand:
         suits.add(cards[0])
-    if suits == set('AJKQT'):
-        return 90000
+    print(suits)
+
+for hands in p2_hands:
+    set_getter(hands)
+'''
+'''
+def flush_checker(hand):
+    suits = ''
+    for cards in hand:
+        suits += cards[1]
+    if len(set(suits)) == 1:
+        print('Flush found')
+        return True
+
+
+def royal_flush_checker(hand):
+    values = ''
+    for cards in hand:
+        values += cards[0]
+    if set(values) == 'AJKQT':
+        print('Royal Flush found')
+        return True
+
+
+def straight_checker(hand):
+    values = []
+    for cards in hand:
+        values.append(cards 
+
+for index, hands in enumerate(p2_hands):
+    if flush_checker(hands):
+        if royal_flush_checker(hands):
+            p2_scores[index] = 90000
+        elif straight_checker(hands):
+            p2_hands
 
 
 print(p2_scores)
-
+'''
 end = time.time()
 
 # Executes in seconds
