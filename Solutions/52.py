@@ -29,5 +29,5 @@ while True:
 
 end = time.time()
 
-# Executed in 0.287 seconds
+# Executes in 0.287 seconds
 print(end - start)

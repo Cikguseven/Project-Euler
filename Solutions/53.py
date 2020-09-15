@@ -31,5 +31,5 @@ print(counter)
 
 end = time.time()
 
-# Executed in 0.0156 seconds
+# Executes in 0.0156 seconds
 print(end - start)
