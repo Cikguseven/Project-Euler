@@ -24,7 +24,7 @@ solution = 1
 # Add numbers that lie on 2 by 2 spiral till 1001 by 1001 spiral. The 4
 # numbers in the same n by n spiral have the same difference.
 for i in range(2, 1002, 2):
-    for numbers in range(4):
+    for j in range(4):
         n += i
         solution += n
 
