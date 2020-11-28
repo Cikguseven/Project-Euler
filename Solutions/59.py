@@ -44,5 +44,5 @@ print(sum(decrypted_list))
 
 end = time.time()
 
-# Executes in 0.00200 seconds
+# Executes in 0.00100 seconds
 print(end - start)
