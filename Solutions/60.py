@@ -33,9 +33,9 @@ def prime_checker(n):
     return True
 
 
-special_primes = [3, 7]
+special_primes = [3]
 
-for a in prime_sieve(30000):
+for a in prime_sieve(90000):
     temp_primes = special_primes.copy()
     temp_primes.append(a)
     perm = permutations(temp_primes, 2)
