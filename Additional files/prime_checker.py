@@ -12,4 +12,4 @@ def prime_checker(n):
     print(f'{n} is prime.')
 
 
-prime_checker(1113)
+prime_checker(3119)

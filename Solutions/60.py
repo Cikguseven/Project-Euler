@@ -1,10 +1,9 @@
+from itertools import combinations
+from itertools import permutations
+from math import sqrt
 import time
 
 start = time.time()
-
-from math import sqrt
-
-from itertools import permutations
 
 
 def prime_sieve(n):
@@ -21,8 +20,9 @@ def prime_sieve(n):
     is_prime[0] = False
     is_prime[1] = False
     for p in range(3, n + 1, 2):
-        if is_prime[p] and p > 10:
+        if is_prime[p]:
             primes.append(p)
+    primes.remove(5)
     return primes
 
 
@@ -32,23 +32,46 @@ def prime_checker(n):
             return False
     return True
 
+valid_pairs = []
 
-special_primes = [3]
+for a in prime_sieve(100):
+    for b in prime_sieve(100):
+        if b > a:
+            pairs = [a, b]
+            perm = permutations(pairs, 2)
+            x = [n for n in list(perm)]
+            z = []
+            for uniques in x:
+                if not prime_checker(int(str(uniques[0]) + str(uniques[1]))):
+                    break
+                else:
+                    z.append(prime_checker(
+                        int(str(uniques[0]) + str(uniques[1]))))
+            if len(z) == 2:
+                valid_pairs.append(pairs)
 
-for a in prime_sieve(90000):
-    temp_primes = special_primes.copy()
-    temp_primes.append(a)
-    perm = permutations(temp_primes, 2)
+print(len(valid_pairs))
+
+x = combinations(valid_pairs, 2)
+
+y= [n for n in list(x)]
+
+print(len(y))
+
+
+'''
+for a in y:
+    perm = permutations(a, 2)
     x = [n for n in list(perm)]
-    y = []
+    print(x)
+    z = []
     for uniques in x:
-        y.append(prime_checker(int(str(uniques[0]) + str(uniques[1]))))
-    if all(y):
-        special_primes.append(a)
+        z.append(prime_checker(int(str(uniques[0]) + str(uniques[1]))))
+    print(z)
+    if all(z):
+        print(y)
+'''
 
-print(special_primes)
-
-        
 end = time.time()
 
 # Executes in 0.129 seconds

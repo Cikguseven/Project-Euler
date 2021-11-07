@@ -22,7 +22,7 @@ def prime_sieve(n):
     return primes
 
 
-print(prime_sieve(1000000))
+print(prime_sieve(100))
 
 end = time.time()
 
