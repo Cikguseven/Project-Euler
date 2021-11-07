@@ -32,31 +32,29 @@ def prime_checker(n):
             return False
     return True
 
+pairs = [n for n in combinations(prime_sieve(1000), 2)]
+
 valid_pairs = []
 
-for a in prime_sieve(100):
-    for b in prime_sieve(100):
-        if b > a:
-            pairs = [a, b]
-            perm = permutations(pairs, 2)
-            x = [n for n in list(perm)]
-            z = []
-            for uniques in x:
-                if not prime_checker(int(str(uniques[0]) + str(uniques[1]))):
-                    break
-                else:
-                    z.append(prime_checker(
-                        int(str(uniques[0]) + str(uniques[1]))))
-            if len(z) == 2:
-                valid_pairs.append(pairs)
+for value in pairs:
+    a = value[0]
+    b = value[1]
+    if prime_checker(int(str(a) + str(b))) and prime_checker(int(str(b) + str(a))):
+        valid_pairs.append([a, b])
 
-print(len(valid_pairs))
+two_pairs = [n for n in combinations(valid_pairs, 2)]
 
-x = combinations(valid_pairs, 2)
+valid_triplets = []
 
-y= [n for n in list(x)]
+for pairs in two_pairs:
+    a = pairs[0]
+    b = pairs[1]
+    c = set(a + b)
+    if len(c) == 3 and list(set(a)^ set(b)) in valid_pairs:
+        valid_triplets.append(list(c))
 
-print(len(y))
+print(valid_triplets)
+
 
 
 '''
