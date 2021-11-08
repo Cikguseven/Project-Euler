@@ -1,8 +1,3 @@
-import time
-
-start = time.time()
-
-
 def prime_sieve(n):
     is_prime = [True for i in range(n + 1)]
     primes = []
@@ -23,8 +18,3 @@ def prime_sieve(n):
 
 
 print(prime_sieve(100))
-
-end = time.time()
-
-# Executes in 0.293 seconds
-print(end - start)
