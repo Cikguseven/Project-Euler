@@ -29,13 +29,8 @@ for row in range(15):
     grid.append(pyramid[row].split())
     grid[row] = [int(x) for x in grid[row]]
 
-# Adds value of first row to numbers in second row as for loop below is unable
-# to be applied to first row
-for i in range(2):
-    grid[1][i] += grid[0][0]
-
 # Top down dynamic summation
-for i in range(2, 15):
+for i in range(1, 15):
     grid[i][0] += grid[i - 1][0]
     grid[i][i] += grid[i - 1][i - 1]
     for j in range(1, i):

@@ -16,13 +16,11 @@ p1_hands = []
 
 p1_scores = [0 for i in range(1000)]
 
-p1_wins = 0
-
 p2_hands = []
 
 p2_scores = [0 for i in range(1000)]
 
-p2_wins = 0
+p1_wins = p2_wins = 0
 
 poker_games = []
 
@@ -142,5 +140,5 @@ print(p1_wins)
 
 end = time.time()
 
-# Executes in 0.0270 seconds
+# Executes in 0.0170 seconds
 print(end - start)
