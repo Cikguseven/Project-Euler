@@ -2,6 +2,10 @@ import time
 
 start = time.time()
 
+from itertools import combinations_with_replacement
+from itertools import permutations
+
+
 valid = {89, 145, 42, 20, 4, 16, 37, 58, 85}
 
 invalid = {1, 44, 32, 13, 10}
@@ -13,21 +17,28 @@ def digits_squared(n):
 		current_value += int(digits) ** 2
 	return current_value
 
+def chain_checker(n):
+	if n in valid:
+		
 
-for i in range(1, 10000):
-	x = i
-	flag = True
-	while flag:
-		if digits_squared(i) in valid:
-			valid.add(x)
-			flag = False
-		elif digits_squared(i) in invalid:
-			invalid.add(x)
-			flag = False
-		else:
-			i = digits_squared(i)
+numbers_under_k = []
 
-print(len(invalid))
+combinations = list(combinations_with_replacement('0123456789', 3))
+
+print(combinations)
+
+new_combinations = []
+
+for groups in combinations:
+	str_of_int = ''
+	for digits in groups:
+		str_of_int += digits
+	new_combinations.append(int(str_of_int))
+
+print(new_combinations)
+
+
+len(set(permutations('2211', 4)))
 
 end = time.time()
 
