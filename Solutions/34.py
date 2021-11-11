@@ -2,9 +2,9 @@ import time
 
 start = time.time()
 
-from math import factorial as fac
-
 from itertools import combinations_with_replacement
+
+from math import factorial as fac
 
 solution = []
 
