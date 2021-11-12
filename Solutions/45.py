@@ -2,10 +2,6 @@ import time
 
 start = time.time()
 
-flag = True
-
-n = 286
-
 
 # Test for pentagonal numbers from Wikipedia
 def pentagonal(n):
@@ -20,6 +16,8 @@ def hexagonal(n):
         return True
     return False
 
+
+n = 286
 
 while True:
     triangle_number = int((n * (n + 1)) / 2)
