@@ -2,17 +2,9 @@ import time
 
 start = time.time()
 
-from math import sqrt
-
 from itertools import permutations
 
-digit_string = '123456789'
-
-flag = True
-
-length = 9
-
-solution = 0
+from math import sqrt
 
 
 def prime_checker(n):
@@ -24,22 +16,25 @@ def prime_checker(n):
     return True
 
 
-while True:
-    permuted_numbers = []
-    for digits in list(permutations(digit_string)):
-        permuted_numbers.append(''.join(digits))
-    for permutation in permuted_numbers:
-        if prime_checker(int(permutation)) and int(permutation) > solution:
-            solution = int(permutation)
-            flag = False
-    if not flag:
-        break
-    digit_string = digit_string.replace(str(length), '')
-    length -= 1
+def solution():
+    digit_string = '123456789'
+    length = 9
+    while True:
+        permuted_numbers = []
+        for digits in list(permutations(digit_string)):
+            permuted_numbers.append(int(''.join(digits)))
+        permuted_numbers.sort(reverse=True)
+        for permutation in permuted_numbers:
+            if prime_checker(permutation):
+                return permutation
+                break
+        digit_string = digit_string.replace(str(length), '')
+        length -= 1
 
-print(solution)
+
+print(solution())
 
 end = time.time()
 
-# Executes in 0.719 seconds
+# Executes in 0.282 seconds
 print(end - start)

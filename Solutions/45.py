@@ -21,15 +21,14 @@ def hexagonal(n):
     return False
 
 
-while flag:
+while True:
     triangle_number = int((n * (n + 1)) / 2)
     if pentagonal(triangle_number) and hexagonal(triangle_number):
         print(triangle_number)
-        flag = False
         break
     n += 1
 
 end = time.time()
 
-# Executes in 0.0587 seconds
+# Executes in 0.0360 seconds
 print(end - start)

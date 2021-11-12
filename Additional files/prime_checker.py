@@ -1,7 +1,9 @@
+from math import sqrt
+
 from random import sample
 
 
-def miller_rabin(n, k=3):
+def miller_rabin(n):
     if n < 6:
         return [False, False, True, True, False, True][n]
     elif n % 2 == 0:
@@ -10,7 +12,7 @@ def miller_rabin(n, k=3):
         s, d = 0, n - 1
         while d % 2 == 0:
             s, d = s + 1, d >> 1
-        for a in sample(range(2, n-2), k):
+        for a in sample(range(2, n - 2), 3):
             x = pow(a, d, n)
             if x != 1 and x + 1 != n:
                 for r in range(1, s):
@@ -23,6 +25,15 @@ def miller_rabin(n, k=3):
                 if a:
                     return False
         return True
+
+
+def prime_checker(n):
+    if n % 2 == 0:
+        return False
+    for d in range(3, int(sqrt(n)) + 1, 2):
+        if n % d == 0:
+            return False
+    return True
 
 
 print(miller_rabin(673))

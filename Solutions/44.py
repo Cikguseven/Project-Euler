@@ -2,10 +2,6 @@ import time
 
 start = time.time()
 
-flag = True
-
-n = 1
-
 pentagonal_numbers = []
 
 
@@ -16,17 +12,20 @@ def pentagonal(n):
     return False
 
 
-while flag:
-    pk = int((n * (3 * n - 1)) / 2)
-    pentagonal_numbers.append(pk)
-    for pj in pentagonal_numbers:
-        if pentagonal(pk + pj) and pentagonal(pk - pj):
-            print(pk - pj)
-            flag = False
-            break
-    n += 1
+def pair():
+    n = 1
+    while True:
+        pk = int((n * (3 * n - 1)) / 2)
+        pentagonal_numbers.append(pk)
+        for pj in pentagonal_numbers:
+            if pentagonal(pk + pj) and pentagonal(pk - pj):
+                return (pk - pj)
+        n += 1
+
+
+print(pair())
 
 end = time.time()
 
-# Executes in 1.66 seconds
+# Executes in 0.860 seconds
 print(end - start)

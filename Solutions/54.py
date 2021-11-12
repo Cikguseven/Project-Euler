@@ -102,7 +102,7 @@ def straight_checker(hand):
         else:
             list_of_values.append(int(cards[0]))
     return sorted(list_of_values) == list(range(min(list_of_values), max(
-        list_of_values)+1))
+        list_of_values) + 1))
 
 
 def zero_adder(value):
@@ -140,5 +140,5 @@ print(p1_wins)
 
 end = time.time()
 
-# Executes in 0.0170 seconds
+# Executes in 0.0150 seconds
 print(end - start)

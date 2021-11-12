@@ -33,5 +33,5 @@ print(prime_sieve(upper_bound)[10000])
 
 end = time.time()
 
-# Executes in 0.0270 seconds
+# Executes in 0.0130 seconds
 print(end - start)
