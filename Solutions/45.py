@@ -21,12 +21,16 @@ n = 286
 
 while True:
     triangle_number = int((n * (n + 1)) / 2)
-    if pentagonal(triangle_number) and hexagonal(triangle_number):
-        print(triangle_number)
-        break
-    n += 1
+    if not pentagonal(triangle_number):
+        n += 1
+        continue
+    if not hexagonal(triangle_number):
+        n += 1
+        continue
+    print(triangle_number)
+    break
 
 end = time.time()
 
-# Executes in 0.0360 seconds
+# Executes in 0.0350 seconds
 print(end - start)

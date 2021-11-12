@@ -35,26 +35,32 @@ for n in range(9):
     value_pairs[n] = n
 
 
-while True:
-    n = 9
-    for j in range(1, 11):
-        for i in range(1, 10):
-            value_pairs[n] = (i * (10 ** j) - 1)
-            n += 1
-    break
+n = 9
 
-for i in range(99):
-    print(S(i))
+j = 1
 
-'''
+while j < 114:
+    for i in range(1, 10):
+        value_pairs[n] = (i * (10 ** j) - 1)
+        n += 1
+        if i == 9:
+            j += 1
+
+
 fibonacci = [0, 1, 1]
 
-for i in range(3, 91):
-    n = fibonacci[i - 1] + fibonacci[i - 1]
+for i in range(3, 17):
+    n = fibonacci[i - 1] + fibonacci[i - 2]
     fibonacci.append(n)
 
 
+for f in fibonacci:
+    print(value_pairs[f])
 
+
+
+
+'''
 answer = 0
 
 for i in range(2, 91):
@@ -62,6 +68,7 @@ for i in range(2, 91):
     answer += S(i)
 
 print(answer % 1000000007)
+
 '''
 end = time.time()
 
