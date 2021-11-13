@@ -3,50 +3,38 @@ import time
 start = time.time()
 
 
-def sum_of_digits(n):
-    s = 0
-    while n:
-        s += n % 10
-        n //= 10
-    return s
+modulo = 1000000007
 
 
 def s(n):
-    if n < 10:
-        return n
-    else:
-        i = 10
-        while True:
-            if sum_of_digits(i) == n:
-                return i
-            i += 1
+    start = str(n % 9)
+    end = '9' * (n // 9)
+    return int(start + end) % modulo
 
 
 def S(n):
-    x = 0
-    for i in range(1, n + 1):
-        x += value_pairs[i]
-    return x
+    if n < 10:
+        return n
+    else:
+        x = (n // 9) % modulo
+        y = (n % 9) % modulo
+        return str((45 * int('1' * x)) - (9 * x) + (((y + 1) / 2)
+                                                    * (s(n - y) + s(n))
+                                                    ) % modulo)
 
 
-value_pairs = {}
+'''
+def S(n):
+    k = n // 9
+    r = 2 + (k % 9)
+    return str((((((r - 1) * r) + 10) * ((10 ** n) % modulo)
+    - 2 * (r + (9 * n) + 4)) // 2) % modulo)
+'''
 
-for n in range(9):
-    value_pairs[n] = n
-
-
-n = 9
-
-j = 1
-
-while j < 114:
-    for i in range(1, 10):
-        value_pairs[n] = (i * (10 ** j) - 1)
-        n += 1
-        if i == 9:
-            j += 1
+print(S(3524578))
 
 
+'''
 fibonacci = [0, 1, 1]
 
 for i in range(3, 17):
@@ -58,9 +46,6 @@ for f in fibonacci:
     print(value_pairs[f])
 
 
-
-
-'''
 answer = 0
 
 for i in range(2, 91):
