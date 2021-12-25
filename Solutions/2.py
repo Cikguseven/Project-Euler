@@ -8,12 +8,12 @@ b = 2
 
 solution = [2]
 
-while a + b < 4000000:
+while a + b < 1000000000:
     a = a + b
     if a % 2 == 0:
         solution.append(a)
     b = a + b
-    if b > 4000000:
+    if b > 1000000000:
         break
     if b % 2 == 0:
         solution.append(b)
