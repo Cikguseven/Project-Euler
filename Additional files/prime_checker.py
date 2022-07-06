@@ -1,4 +1,3 @@
-from math import sqrt
 
 from random import sample
 
@@ -25,6 +24,9 @@ def miller_rabin(n):
                 if a:
                     return False
         return True
+
+
+from math import sqrt
 
 
 def prime_checker(n):
